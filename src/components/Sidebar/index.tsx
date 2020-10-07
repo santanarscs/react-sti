@@ -1,6 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
+import {
+  FiHome,
+  FiSettings,
+  FiPower,
+  FiUsers,
+  FiCalendar,
+} from 'react-icons/fi';
 import { Container, Nav } from './styles';
 
 const Sidebar: React.FC = () => {
@@ -16,7 +22,17 @@ const Sidebar: React.FC = () => {
           </li>
           <li>
             <NavLink to="/users">
+              <FiUsers size={30} />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/users">
               <FiSettings size={30} />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/users">
+              <FiCalendar size={30} />
             </NavLink>
           </li>
         </Nav>

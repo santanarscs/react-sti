@@ -11,7 +11,7 @@ interface ISignInFormData {
   password: string;
 }
 
-const Auth: React.FC = ({ children }): JSX.Element => {
+const Auth: React.FC = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<ISignInFormData>({
     email: '',

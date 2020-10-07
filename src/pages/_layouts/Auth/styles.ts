@@ -9,30 +9,32 @@ export const Container = styled.div`
   align-items: center;
   form {
     h1 {
-      font-size: 1.5rem;
-      color: #fff;
+      font-size: 3rem;
+      color: ${({ theme }) => theme.colors.darkGrey};
     }
-    padding: 30px;
-    background: #36393f;
-    border-radius: 3px;
+    padding: 3rem;
+    background: ${({ theme }) => theme.colors.lightGrey};
+    border-radius: 0.3px;
     display: flex;
     flex-direction: column;
     button {
-      margin-top: 20px;
+      margin-top: 2rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1rem;
+      font-size: 1.6rem;
       border: none;
-      background: #3498db;
-      color: #fff;
-      height: 40px;
-      padding: 0 10px;
-      border-radius: 3px;
+      background: ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.darkGrey};
+      height: 4rem;
+      padding: 0 1rem;
+      border-radius: 0.3rem;
       text-transform: uppercase;
       transition: background 0.2s;
+      letter-spacing: 0.2rem;
+      font-weight: bold;
       &:hover {
-        background: ${darken(0.1, '#3498db')};
+        background: ${({ theme }) => darken(0.1, theme.colors.primary)};
       }
       svg {
         margin-right: 0.3rem;

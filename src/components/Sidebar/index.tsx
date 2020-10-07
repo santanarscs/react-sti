@@ -1,39 +1,29 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FiHome, FiFileText, FiUser, FiSettings } from 'react-icons/fi';
+import { FiHome, FiSettings, FiPower } from 'react-icons/fi';
 import { Container, Nav } from './styles';
 
 const Sidebar: React.FC = () => {
   return (
     <Container>
+      <h1>STI</h1>
       <div>
         <Nav>
           <li>
             <NavLink to="/">
-              <FiHome size={20} />
-              <span>Dashboard</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/documents">
-              <FiFileText size={20} />
-              <span>Audiências</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/managers">
-              <FiUser size={20} />
-              <span>Coordenadores</span>
+              <FiHome size={30} />
             </NavLink>
           </li>
           <li>
             <NavLink to="/users">
-              <FiSettings size={20} />
-              <span>Usuários</span>
+              <FiSettings size={30} />
             </NavLink>
           </li>
         </Nav>
       </div>
+      <button type="button">
+        <FiPower size={20} />
+      </button>
     </Container>
   );
 };

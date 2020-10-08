@@ -34,7 +34,7 @@ const Sidebar: React.FC = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/appontiments" activeClassName="is-active">
+            <NavLink to="/appointments" activeClassName="is-active">
               <FiCalendar size={20} />
               <span>Agendamento</span>
             </NavLink>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FiMenu } from 'react-icons/fi';
 import api from '../../../services/api';
-
-import { Container, Table, Row } from './styles';
+import { Container, Table, Row, MenuActionItem } from './styles';
 import Pagination from '../../../components/Pagination';
+import Dropdown from '../../../components/Dropdown';
 
 const Users: React.FC = (): JSX.Element => {
   const [users, setUsers] = useState([]);
@@ -21,6 +23,7 @@ const Users: React.FC = (): JSX.Element => {
             <th>Seção</th>
             <th>Ramal</th>
             <th>E-mail</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +36,25 @@ const Users: React.FC = (): JSX.Element => {
               <td>{user.secao}</td>
               <td>{user.ramal}</td>
               <td>{user.email}</td>
+              <td>
+                <Dropdown icon={FiMenu}>
+                  <MenuActionItem>
+                    <Link to={`users/detail/${user.id}`}>
+                      <span>Detalhes</span>
+                    </Link>
+                  </MenuActionItem>
+                  <MenuActionItem>
+                    <Link to={`users/edit/${user.id}`}>
+                      <span>Editar</span>
+                    </Link>
+                  </MenuActionItem>
+                  <MenuActionItem>
+                    <button type="button" onClick={() => alert('remover')}>
+                      <span>Remover</span>
+                    </button>
+                  </MenuActionItem>
+                </Dropdown>
+              </td>
             </Row>
           ))}
         </tbody>

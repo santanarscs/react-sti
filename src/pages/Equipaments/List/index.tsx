@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, Table, Row } from './styles';
+import { FiMenu } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import { Container, Table, Row, MenuActionItem } from './styles';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
+import Dropdown from '../../../components/Dropdown';
 
 const List: React.FC = () => {
   const [equipaments, setEquipaments] = useState([]);
@@ -20,6 +23,7 @@ const List: React.FC = () => {
             <th>Descrição</th>
             <th>Local</th>
             <th>Usuário</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +34,25 @@ const List: React.FC = () => {
               <td>{equipament.descricao}</td>
               <td>{equipament.local}</td>
               <td>{equipament.usuario}</td>
+              <td>
+                <Dropdown icon={FiMenu}>
+                  <MenuActionItem>
+                    <Link to={`equipaments/detail/${equipament.id}`}>
+                      <span>Detalhes</span>
+                    </Link>
+                  </MenuActionItem>
+                  <MenuActionItem>
+                    <Link to={`equipaments/edit/${equipament.id}`}>
+                      <span>Editar</span>
+                    </Link>
+                  </MenuActionItem>
+                  <MenuActionItem>
+                    <button type="button" onClick={() => alert('remover')}>
+                      <span>Remover</span>
+                    </button>
+                  </MenuActionItem>
+                </Dropdown>
+              </td>
             </Row>
           ))}
         </tbody>

@@ -22,3 +22,9 @@ export const Container = styled.div`
     }
   }
 `;
+
+export const ContentTable = styled.div`
+  padding: 2rem;
+  border-radius: ${({ theme }) => theme.radii.default};
+  background: #323846;
+`;

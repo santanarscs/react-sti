@@ -6,6 +6,7 @@ import {
   FiPower,
   FiUsers,
   FiCalendar,
+  FiMonitor,
 } from 'react-icons/fi';
 import { Container, Nav } from './styles';
 
@@ -25,6 +26,12 @@ const Sidebar: React.FC = () => {
             <NavLink to="/users" activeClassName="is-active">
               <FiUsers size={20} />
               <span>Usuários</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/equipaments" activeClassName="is-active">
+              <FiMonitor size={20} />
+              <span>Equipamentos</span>
             </NavLink>
           </li>
           <li>

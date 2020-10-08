@@ -43,15 +43,16 @@ export const Nav = styled.ul`
         transition: color 0.2s ease;
         margin-right: 1rem;
       }
+
+      &:hover {
+        background: #3b414e;
+        border-radius: ${({ theme }) => theme.radii.default};
+      }
       &.is-active {
         color: #fff;
         background: ${({ theme }) => theme.colors.primary};
         border-radius: ${({ theme }) => theme.radii.default};
         box-shadow: ${({ theme }) => theme.shadows.default};
-      }
-      &:hover {
-        background: #3b414e;
-        border-radius: ${({ theme }) => theme.radii.default};
       }
       span {
         font-weight: normal;

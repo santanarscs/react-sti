@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiMenu } from 'react-icons/fi';
+import { FiMenu, FiPlus } from 'react-icons/fi';
 import api from '../../../services/api';
-import { Container, Table, Row, MenuActionItem } from './styles';
 import Pagination from '../../../components/Pagination';
 import Dropdown from '../../../components/Dropdown';
+
+import { Container, HeaderContent, Table, Row, MenuActionItem } from './styles';
 
 const Users: React.FC = (): JSX.Element => {
   const [users, setUsers] = useState([]);
@@ -14,7 +15,13 @@ const Users: React.FC = (): JSX.Element => {
   }, []);
   return (
     <Container>
-      <h1>Lista de usuários</h1>
+      <HeaderContent>
+        <Link to="/users/new">
+          <FiPlus size={20} />
+          Cadastrar
+        </Link>
+        <h1>Lista de usuários</h1>
+      </HeaderContent>
       <Table>
         <thead>
           <tr>

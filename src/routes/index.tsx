@@ -8,6 +8,7 @@ import Dashboard from '../pages/Dashboard';
 
 import UsersList from '../pages/Users/List';
 import UserDetail from '../pages/Users/Detail';
+import UserAdd from '../pages/Users/Add';
 
 import OrdersList from '../pages/Orders/List';
 import OrderDetail from '../pages/Orders/Detail';
@@ -23,6 +24,7 @@ const Routes: React.FC = () => (
     <Route path="/dashboard" isPrivate component={Dashboard} />
 
     <Route path="/users/detail/:id" isPrivate component={UserDetail} />
+    <Route path="/users/new" isPrivate component={UserAdd} />
     <Route path="/users" isPrivate component={UsersList} />
 
     <Route path="/orders/detail/:id" isPrivate component={OrderDetail} />

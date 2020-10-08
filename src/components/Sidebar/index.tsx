@@ -16,23 +16,27 @@ const Sidebar: React.FC = () => {
       <div>
         <Nav>
           <li>
-            <NavLink to="/">
-              <FiHome size={30} />
+            <NavLink to="/dashboard" activeClassName="is-active">
+              <FiHome size={20} />
+              <span>Dashboard</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to="/users">
-              <FiUsers size={30} />
+            <NavLink to="/users" activeClassName="is-active">
+              <FiUsers size={20} />
+              <span>Usuários</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to="/users">
-              <FiSettings size={30} />
+            <NavLink to="/orders" activeClassName="is-active">
+              <FiSettings size={20} />
+              <span>Pedido de serviços</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to="/users">
-              <FiCalendar size={30} />
+            <NavLink to="/appontiments" activeClassName="is-active">
+              <FiCalendar size={20} />
+              <span>Agendamento</span>
             </NavLink>
           </li>
         </Nav>

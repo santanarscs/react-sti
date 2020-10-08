@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  margin-left: 10rem;
+  margin-left: 25rem;
   flex: 1;
   display: flex;
   flex-direction: column;

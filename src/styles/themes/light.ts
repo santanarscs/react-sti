@@ -1,16 +1,13 @@
 export default {
   colors: {
-    primary: '#73B5E0',
-    primaryDark: '#092442',
-    secondary: '#8ECF15',
+    primary: '#386ae8',
+    secondary: '#38e8de',
+    tertiary: '#31e184',
     grey: '#8C91A5',
-    greyLowerOpacity: '#abaebf',
-    lightGrey: '#F5F6FA',
-    darkGrey: '#6C757D',
     success: '#20C05C',
     error: '#FD4F48',
-    label: '#fff',
     background: '#fff',
+    white: '#fff',
     yellow: '#FFED00',
   },
   fontSizes: {
@@ -36,7 +33,7 @@ export default {
     tiny: '0.2rem',
   },
   shadows: {
-    default: '0 0.5rem 2rem rgba(0, 0, 0, 0.08)',
-    flat: '0 0.2rem 0.2rem rgba(0, 0, 0, 0.08)',
+    default: '0 0.5rem 2rem #262e3e',
+    flat: '0 0.2rem 0.2rem #262e3e',
   },
 };

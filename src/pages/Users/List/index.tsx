@@ -39,12 +39,12 @@ const Users: React.FC = (): JSX.Element => {
               <td>
                 <Dropdown icon={FiMenu}>
                   <MenuActionItem>
-                    <Link to={`users/detail/${user.id}`}>
+                    <Link to={`/users/detail/${user.id}`}>
                       <span>Detalhes</span>
                     </Link>
                   </MenuActionItem>
                   <MenuActionItem>
-                    <Link to={`users/edit/${user.id}`}>
+                    <Link to={`/users/edit/${user.id}`}>
                       <span>Editar</span>
                     </Link>
                   </MenuActionItem>

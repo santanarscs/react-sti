@@ -185,5 +185,42 @@
       "solucionador": "S2 Severino",
       "usuario": "Goku"
     }
+  ],
+  "equipaments": [
+    {
+      "id": "001",
+      "bpm": "123456",
+      "descricao": "DELL optiplex 990 - i5 - HD 220 MB - 4GB RAM",
+      "local": "STI",
+      "usuario": "Goku"
+    },
+    {
+      "id": "002",
+      "bpm": "123456",
+      "descricao": "DELL optiplex 3010 - i5 - HD 500 MB - 4GB RAM",
+      "local": "DPE",
+      "usuario": "Goku"
+    },
+    {
+      "id": "003",
+      "bpm": "123456",
+      "descricao": "DELL optiplex 780 - 2DUO - HD 160 MB - 2GB RAM",
+      "local": "DCE",
+      "usuario": "Goku"
+    },
+    {
+      "id": "004",
+      "bpm": "123456",
+      "descricao": "APARELHO VÍDEO CONFERÊNCIA LOGITECH",
+      "local": "DAV",
+      "usuario": "Goku"
+    },
+    {
+      "id": "005",
+      "bpm": "123456",
+      "descricao": "DELL optiplex 990 - i5 - HD 220 MB - 4GB RAM",
+      "local": "STI",
+      "usuario": "Goku"
+    }
   ]
 }

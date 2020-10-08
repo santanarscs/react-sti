@@ -50,6 +50,6 @@ export const Row = styled.tr`
   transition: background 0.3s;
   &:hover {
     cursor: pointer;
-    background: shade(0.4, '#323846');
+    background: ${shade(0.4, '#323846')};
   }
 `;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../services/api';
 
-import { Container, ContentTable } from './styles';
+import { Container, Table, Row } from './styles';
 import Pagination from '../../../components/Pagination';
 
 const Users: React.FC = (): JSX.Element => {
@@ -13,32 +13,30 @@ const Users: React.FC = (): JSX.Element => {
   return (
     <Container>
       <h1>Lista de usuários</h1>
-      <ContentTable>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nome de guerra</th>
-              <th>Seção</th>
-              <th>Ramal</th>
-              <th>E-mail</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user: any) => (
-              <tr key={user.id}>
-                <td>
-                  <img src={user.image_url} alt={user.nome} />
-                </td>
-                <td>{`${user.post_grad_id} ${user.nome_guerra}`}</td>
-                <td>{user.secao}</td>
-                <td>{user.ramal}</td>
-                <td>{user.email}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </ContentTable>
+      <Table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome de guerra</th>
+            <th>Seção</th>
+            <th>Ramal</th>
+            <th>E-mail</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user: any) => (
+            <Row key={user.id}>
+              <td>
+                <img src={user.image_url} alt={user.nome} />
+              </td>
+              <td>{`${user.post_grad_id} ${user.nome_guerra}`}</td>
+              <td>{user.secao}</td>
+              <td>{user.ramal}</td>
+              <td>{user.email}</td>
+            </Row>
+          ))}
+        </tbody>
+      </Table>
       <Pagination
         currentPage={1}
         total={100}

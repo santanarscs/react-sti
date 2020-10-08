@@ -37,12 +37,12 @@ const List: React.FC = () => {
               <td>
                 <Dropdown icon={FiMenu}>
                   <MenuActionItem>
-                    <Link to={`equipaments/detail/${equipament.id}`}>
+                    <Link to={`/equipaments/detail/${equipament.id}`}>
                       <span>Detalhes</span>
                     </Link>
                   </MenuActionItem>
                   <MenuActionItem>
-                    <Link to={`equipaments/edit/${equipament.id}`}>
+                    <Link to={`/equipaments/edit/${equipament.id}`}>
                       <span>Editar</span>
                     </Link>
                   </MenuActionItem>

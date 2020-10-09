@@ -35,6 +35,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/jsx-curly-newline": "off",
     "no-unused-expressions": "off",
+    "@typescript-eslint/camelcase": "off",
     "no-underscore-dangle": ["error", { "allow": ["_id"] }],
     "import/prefer-default-export": "off",
     "react/jsx-filename-extension": [

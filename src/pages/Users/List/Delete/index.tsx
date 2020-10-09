@@ -3,6 +3,7 @@ import { FiX, FiCheck } from 'react-icons/fi';
 import { Container } from './styles';
 import { useModal } from '../../../../hooks/modal';
 import api from '../../../../services/api';
+import { useToast } from '../../../../hooks/toast';
 
 interface IUser {
   id: string;
@@ -21,6 +22,7 @@ interface IUserDeleteProps {
 
 const Delete: React.FC<IUserDeleteProps> = ({ user, handleRemoveUserList }) => {
   const { closeModal } = useModal();
+  const { addToast } = useToast();
 
   const handleDecline = useCallback(() => {
     closeModal();
@@ -29,15 +31,15 @@ const Delete: React.FC<IUserDeleteProps> = ({ user, handleRemoveUserList }) => {
   const handleConfirm = useCallback(
     async (id: string) => {
       await api.delete(`/users/${id}`);
-      // addToast({
-      //   type: 'success',
-      //   title: 'Cliente removido',
-      //   description: 'O cliente foi removido com sucesso',
-      // });
+      addToast({
+        type: 'success',
+        title: 'Usuário removido',
+        description: 'O usuário foi removido com sucesso',
+      });
       closeModal();
       handleRemoveUserList(id);
     },
-    [closeModal, handleRemoveUserList],
+    [closeModal, addToast, handleRemoveUserList],
   );
   return (
     <Container>

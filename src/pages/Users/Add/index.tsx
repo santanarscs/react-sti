@@ -9,6 +9,7 @@ import api from '../../../services/api';
 import Select, { IOptionValue } from '../../../components/Select';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import DatePicker from '../../../components/Datepicker';
+import { useToast } from '../../../hooks/toast';
 
 interface IFormData {
   name: string;
@@ -42,6 +43,7 @@ const Add: React.FC = () => {
   const [sections, setSections] = useState<IOptionValue[]>([]);
 
   const history = useHistory();
+  const { addToast } = useToast();
 
   useEffect(() => {
     api.get<ISpecialty[]>('specialties').then((response) =>
@@ -94,6 +96,11 @@ const Add: React.FC = () => {
         abortEarly: false,
       });
       await api.post('users', data);
+      addToast({
+        type: 'success',
+        title: 'Usuário cadastrado!',
+        description: 'Um novo usuário foi cadastrado com sucesso!',
+      });
       history.push('/users');
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
@@ -101,7 +108,12 @@ const Add: React.FC = () => {
         formRef.current?.setErrors(errors);
         return;
       }
-      alert('erro inesperado');
+      addToast({
+        type: 'error',
+        title: 'Erro na operação',
+        description:
+          'Ocorreu um erro ao tentar criar um novo usuário, tente novamente mais tarde.',
+      });
     }
   };
   return (

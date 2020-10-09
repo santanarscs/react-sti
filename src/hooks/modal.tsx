@@ -1,74 +1,52 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useCallback, useState, useContext } from 'react';
 import { uuid } from 'uuidv4';
 import Modal from '../components/Modal';
 
-// interface IModal {
-//   id: string;
-//   size: 'big' | 'mediun' | 'small';
-//   title?: string;
-//   component?: React.ComponentType;
-//   Component?: React.ComponentType;
-// }
-// interface IModalContextData {
-//   open(data: Omit<IModal, 'id'>): void;
-//   close(id: string): void;
-// }
+export interface IModalContainer {
+  id: string;
+  type?: string;
+  title: string;
+  container: React.ComponentType;
+}
 
-// const ModalContext = createContext<IModalContextData>({} as IModalContextData);
-const ModalContext = createContext<any>({} as any);
+interface IModalContextData {
+  openModal(container: Omit<IModalContainer, 'id'>): void;
+  closeModal(): void;
+}
+const ModalContext = createContext<IModalContextData>({} as IModalContextData);
 
 const ModalProvider: React.FC = ({ children }) => {
-  const [modal, setModal] = useState<boolean>(false);
-  const [modalContent, setModalContent] = useState<string>(
-    'modal sem conteudo',
+  const [modal, setModal] = useState<IModalContainer>({} as IModalContainer);
+  const openModal = useCallback(
+    ({ title, container }: Omit<IModalContainer, 'id'>) => {
+      const modalProps = {
+        id: uuid(),
+        title,
+        type: 'default',
+        container,
+      };
+      setModal(modalProps);
+    },
+    [],
   );
-  const handleModal = (content = false) => {
-    setModal(!modal);
-    if (content) {
-      setModalContent(content.toString());
-    }
-  };
-
+  const closeModal = useCallback(() => {
+    setModal({} as IModalContainer);
+  }, []);
   return (
-    <ModalContext.Provider value={{ modal, handleModal, modalContent }}>
-      <Modal size="big" />
+    <ModalContext.Provider value={{ openModal, closeModal }}>
       {children}
+      <div style={{ display: modal.id ? 'block' : 'none' }}>
+        <Modal modalData={modal} />
+      </div>
     </ModalContext.Provider>
   );
 };
+function useModal(): IModalContextData {
+  const context = useContext(ModalContext);
+  if (!context) {
+    throw new Error('useModal must be used whitin a ModalProvider');
+  }
+  return context;
+}
 
-// const ModalProvider: React.FC = ({ children }) => {
-//   const [modalProps, setModalProps] = useState<IModal>({} as IModal);
-//   const open = useCallback(({ size, title, component }: Omit<IModal, 'id'>) => {
-//     const modal = {
-//       id: uuid(),
-//       size,
-//       title,
-//       component,
-//     };
-//     console.log(modal);
-//     setModalProps(modal);
-//   }, []);
-//   const close = useCallback((id: string) => {
-//     setModalProps((state) => (state.id === id ? ({} as IModal) : state));
-//   }, []);
-//   const { component: Component } = modalProps;
-//   return (
-//     <ModalContext.Provider value={{ open, close }}>
-//       {children}
-//       <ModalContainer size={modalProps.size}>
-//         <Component />
-//       </ModalContainer>
-//     </ModalContext.Provider>
-//   );
-// };
-
-// function useModal(): IModalContextData {
-//   const context = useContext(ModalContext);
-
-//   if (!context) {
-//     throw new Error('useModal must be used within ModalProvider');
-//   }
-//   return context;
-// }
-// export { ModalProvider, useModal };
+export { ModalProvider, useModal };

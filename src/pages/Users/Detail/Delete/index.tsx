@@ -5,22 +5,12 @@ import { useModal } from '../../../../hooks/modal';
 import api from '../../../../services/api';
 import { useToast } from '../../../../hooks/toast';
 
-interface IUser {
-  id: string;
-  nome: string;
-  nome_guerra: string;
-  post_grad_id: string;
-  secao: string;
-  ramal: string;
-  email: string;
-  image_url: string;
-}
 interface IUserDeleteProps {
-  user: IUser;
-  handleRemoveUserList: (id: string) => void;
+  id: string;
+  handleRedirect: () => void;
 }
 
-const Delete: React.FC<IUserDeleteProps> = ({ user, handleRemoveUserList }) => {
+const Delete: React.FC<IUserDeleteProps> = ({ id, handleRedirect }) => {
   const { closeModal } = useModal();
   const { addToast } = useToast();
 
@@ -28,19 +18,16 @@ const Delete: React.FC<IUserDeleteProps> = ({ user, handleRemoveUserList }) => {
     closeModal();
   }, [closeModal]);
 
-  const handleConfirm = useCallback(
-    async (id: string) => {
-      await api.delete(`/users/${id}`);
-      addToast({
-        type: 'success',
-        title: 'Usuário removido',
-        description: 'O usuário foi removido com sucesso',
-      });
-      closeModal();
-      handleRemoveUserList(id);
-    },
-    [closeModal, addToast, handleRemoveUserList],
-  );
+  const handleConfirm = useCallback(async () => {
+    await api.delete(`/users/${id}`);
+    addToast({
+      type: 'success',
+      title: 'Usuário removido',
+      description: 'O usuário foi removido com sucesso',
+    });
+    closeModal();
+    handleRedirect();
+  }, [closeModal, id, handleRedirect, addToast]);
   return (
     <Container>
       <p>Deseja remover este militar?</p>
@@ -49,7 +36,7 @@ const Delete: React.FC<IUserDeleteProps> = ({ user, handleRemoveUserList }) => {
           <FiX size={20} />
           Não, me tire daqui
         </button>
-        <button type="button" onClick={() => handleConfirm(user.id)}>
+        <button type="button" onClick={() => handleConfirm()}>
           <FiCheck size={20} />
           Sim, tenho certeza!
         </button>

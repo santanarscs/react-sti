@@ -41,7 +41,7 @@ export default createGlobalStyle`
   a {
     text-decoration: none;
     background: none;
-    font-weight: 700;
+    font-weight: 500;
     cursor: pointer;
     border: 0;
     transition: 180ms ease-in-out;

@@ -9,7 +9,7 @@ export const Container = styled.div`
     padding: 2rem;
     border-radius: ${({ theme }) => theme.radii.default};
     box-shadow: ${({ theme }) => theme.shadows.default};
-    button {
+    > button {
       width: 14rem;
       margin-left: auto;
       color: ${(props) => props.theme.colors.white};
@@ -20,5 +20,17 @@ export const Container = styled.div`
       border-radius: ${({ theme }) => theme.radii.default};
       margin-top: 1.6rem;
     }
+  }
+`;
+
+export const Row = styled.div`
+  display: flex;
+  align-items: center;
+  > div {
+    flex: 1;
+    margin-bottom: 1.5rem;
+  }
+  > div + div {
+    margin-left: 1.5rem;
   }
 `;

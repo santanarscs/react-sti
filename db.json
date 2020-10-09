@@ -43,7 +43,6 @@
       "description": "Agente de Controle Interno"
     }
   ],
-
   "specialties": [
     {
       "id": "1",
@@ -56,7 +55,6 @@
       "description": "Quadro de Oficiais Aviadores"
     }
   ],
-
   "users": [
     {
       "id": 1,
@@ -190,6 +188,21 @@
       "antiguidade_turma": 8,
       "ativo": 1,
       "image_url": "http://www.direns.intraer/fotos/CL_Sena.jpg"
+    },
+    {
+      "graduation": "2",
+      "specialty": "1",
+      "name": "asdf",
+      "saram": "",
+      "full_name": "asdf",
+      "mail": "raphaelstn@gmail.com",
+      "section": "2",
+      "situation": 1,
+      "phone": "2276",
+      "birthday": "2020-10-23T03:00:00.000Z",
+      "last_promotion": "2020-10-20T03:00:00.000Z",
+      "sequence": "1",
+      "id": 9
     }
   ],
   "orders": [

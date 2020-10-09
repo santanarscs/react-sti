@@ -36,6 +36,7 @@ const DatePicker: React.FC<IProps> = ({
         selected={date}
         onChange={setDate}
         placeholderText={placeholder}
+        dateFormat="dd/MM/yyyy"
         {...rest}
       />
     </Container>

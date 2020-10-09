@@ -1,18 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiPlus } from 'react-icons/fi';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
 import Dropdown from '../../../components/Dropdown';
+import Delete from './Delete';
 
 import { Container, HeaderContent, Table, Row, MenuActionItem } from './styles';
+import { useModal } from '../../../hooks/modal';
+
+interface IUser {
+  id: string;
+  nome: string;
+  nome_guerra: string;
+  post_grad_id: string;
+  secao: string;
+  ramal: string;
+  email: string;
+  image_url: string;
+}
 
 const Users: React.FC = (): JSX.Element => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<IUser[]>([]);
+  const { openModal } = useModal();
 
   useEffect(() => {
     api.get('/users').then((response) => setUsers(response.data));
   }, []);
+
+  const handleRemoveUserList = useCallback((id: string) => {
+    setUsers((state) => state.filter((user) => user.id !== id));
+  }, []);
+
+  const handleRemoveItem = useCallback(
+    (user: IUser) => {
+      openModal({
+        title: 'Remover usuário',
+        container: () => Delete({ user, handleRemoveUserList }),
+      });
+    },
+    [openModal, handleRemoveUserList],
+  );
   return (
     <Container>
       <HeaderContent>
@@ -56,7 +84,10 @@ const Users: React.FC = (): JSX.Element => {
                     </Link>
                   </MenuActionItem>
                   <MenuActionItem>
-                    <button type="button" onClick={() => alert('remover')}>
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveItem(user)}
+                    >
                       <span>Remover</span>
                     </button>
                   </MenuActionItem>

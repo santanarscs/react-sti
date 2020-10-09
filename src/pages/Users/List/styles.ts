@@ -45,7 +45,6 @@ export const Table = styled.table`
       padding-left: 1.6rem;
     }
     th:last-child {
-      text-align: right;
       padding-right: 1.6rem;
     }
   }
@@ -65,7 +64,6 @@ export const Row = styled.tr`
     border-radius: 1rem 0 0 1rem;
   }
   td:last-child {
-    text-align: right;
     border-radius: 0 1rem 1rem 0;
     padding-right: 16px;
   }
@@ -75,42 +73,5 @@ export const Row = styled.tr`
   &:hover {
     cursor: pointer;
     background: ${shade(0.4, '#323846')};
-  }
-`;
-
-export const MenuActionItem = styled.li`
-  width: 100%;
-  padding: 10px 30px;
-  cursor: pointer;
-  border-bottom: 1px solid #3b414e;
-  transition: color 0.2s;
-  font-weight: normal;
-  a {
-    display: flex;
-    text-decoration: none;
-    color: #ccd1dd;
-    transition: color 0.2s;
-    font-weight: normal;
-  }
-  button {
-    display: flex;
-    border: 0;
-    background: transparent;
-    color: #ccd1dd;
-    transition: color 0.2s;
-  }
-  svg {
-    margin-right: 5px;
-  }
-  &:hover {
-    svg {
-      color: ${(props) => props.theme.colors.primary};
-    }
-    a {
-      color: ${(props) => props.theme.colors.primary};
-    }
-    button {
-      color: ${(props) => props.theme.colors.primary};
-    }
   }
 `;

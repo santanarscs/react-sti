@@ -1,13 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { FiMenu, FiPlus } from 'react-icons/fi';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { FiPlus } from 'react-icons/fi';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
-import Dropdown from '../../../components/Dropdown';
-import Delete from './Delete';
 
-import { Container, HeaderContent, Table, Row, MenuActionItem } from './styles';
-import { useModal } from '../../../hooks/modal';
+import { Container, HeaderContent, Table, Row } from './styles';
 
 interface IUser {
   id: string;
@@ -22,25 +19,11 @@ interface IUser {
 
 const Users: React.FC = (): JSX.Element => {
   const [users, setUsers] = useState<IUser[]>([]);
-  const { openModal } = useModal();
-
+  const history = useHistory();
   useEffect(() => {
-    api.get('/users').then((response) => setUsers(response.data));
+    api.get<IUser[]>('/users').then((response) => setUsers(response.data));
   }, []);
 
-  const handleRemoveUserList = useCallback((id: string) => {
-    setUsers((state) => state.filter((user) => user.id !== id));
-  }, []);
-
-  const handleRemoveItem = useCallback(
-    (user: IUser) => {
-      openModal({
-        title: 'Remover usuário',
-        container: () => Delete({ user, handleRemoveUserList }),
-      });
-    },
-    [openModal, handleRemoveUserList],
-  );
   return (
     <Container>
       <HeaderContent>
@@ -58,12 +41,14 @@ const Users: React.FC = (): JSX.Element => {
             <th>Seção</th>
             <th>Ramal</th>
             <th>E-mail</th>
-            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user: any) => (
-            <Row key={user.id}>
+          {users.map((user) => (
+            <Row
+              key={user.id}
+              onClick={() => history.push(`/users/detail/${user.id}`)}
+            >
               <td>
                 <img src={user.image_url} alt={user.nome} />
               </td>
@@ -71,28 +56,6 @@ const Users: React.FC = (): JSX.Element => {
               <td>{user.secao}</td>
               <td>{user.ramal}</td>
               <td>{user.email}</td>
-              <td>
-                <Dropdown icon={FiMenu}>
-                  <MenuActionItem>
-                    <Link to={`/users/detail/${user.id}`}>
-                      <span>Detalhes</span>
-                    </Link>
-                  </MenuActionItem>
-                  <MenuActionItem>
-                    <Link to={`/users/edit/${user.id}`}>
-                      <span>Editar</span>
-                    </Link>
-                  </MenuActionItem>
-                  <MenuActionItem>
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveItem(user)}
-                    >
-                      <span>Remover</span>
-                    </button>
-                  </MenuActionItem>
-                </Dropdown>
-              </td>
             </Row>
           ))}
         </tbody>

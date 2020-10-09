@@ -10,10 +10,10 @@ export const Container = styled.div`
   form {
     h1 {
       font-size: 3rem;
-      color: ${({ theme }) => theme.colors.darkGrey};
+      color: ${({ theme }) => theme.colors.grey};
     }
     padding: 3rem;
-    background: ${({ theme }) => theme.colors.lightGrey};
+    background: ${({ theme }) => theme.colors.grey};
     border-radius: 0.3px;
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@ export const Container = styled.div`
       font-size: 1.6rem;
       border: none;
       background: ${({ theme }) => theme.colors.primary};
-      color: ${({ theme }) => theme.colors.darkGrey};
+      color: ${({ theme }) => theme.colors.grey};
       height: 4rem;
       padding: 0 1rem;
       border-radius: 0.3rem;

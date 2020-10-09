@@ -1,4 +1,62 @@
 {
+  "graduations": [
+    {
+      "id": "1",
+      "name": "TB",
+      "description": "Tenente Brigadeiro do Ar"
+    },
+    {
+      "id": "2",
+      "name": "MB",
+      "description": "Major Brigadeiro do Ar"
+    },
+    {
+      "id": "3",
+      "name": "2S",
+      "description": "Segundo Sargento"
+    },
+    {
+      "id": "4",
+      "name": "3S",
+      "description": "Terceiro Sargento"
+    }
+  ],
+  "sections": [
+    {
+      "id": "1",
+      "name": "SDEN",
+      "description": "Subdiretoria de Ensino"
+    },
+    {
+      "id": "2",
+      "name": "GABENS",
+      "description": "Gabinete de Ensino "
+    },
+    {
+      "id": "3",
+      "name": "STI",
+      "description": "Seção de Tecnologia da Informação"
+    },
+    {
+      "id": "4",
+      "name": "ACI",
+      "description": "Agente de Controle Interno"
+    }
+  ],
+
+  "specialties": [
+    {
+      "id": "1",
+      "name": "QSS",
+      "description": "Quadro de Suboficiais de Sargentos"
+    },
+    {
+      "id": "2",
+      "name": "QOAV",
+      "description": "Quadro de Oficiais Aviadores"
+    }
+  ],
+
   "users": [
     {
       "id": 1,

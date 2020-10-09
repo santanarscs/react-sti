@@ -2010,10 +2010,10 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
-"@types/react-datepicker@^2.11.0":
-  version "2.11.1"
-  resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-2.11.1.tgz#f7ad70cf935c75ced3d769347cc2212c6234fcd9"
-  integrity sha512-MVz1vcv3ButoDfKPUA40lSxPBGsT1f05zqvUsP4t5997TX9C4btlYyREJ+h9sRw9R10EpokkS08GFK4XI+Q0Qg==
+"@types/react-datepicker@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-3.1.1.tgz#bbb5e4561f657ca8e3d6829dd99b91a98c0bb74c"
+  integrity sha512-vwNrgaIMJThvvwmtnA8jSVVJZ0FNgljQrq1jDA4MtYJIDmVmd9NNrFaXf9u2JqR2nS+8Kvi8OVs/tnAbUqZhHw==
   dependencies:
     "@types/react" "*"
     date-fns "^2.0.1"
@@ -2050,10 +2050,10 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react-select@^3.0.13":
-  version "3.0.13"
-  resolved "https://registry.yarnpkg.com/@types/react-select/-/react-select-3.0.13.tgz#b1a05eae0f65fb4f899b4db1f89b8420cb9f3656"
-  integrity sha512-JxmSArGgzAOtb37+Jz2+3av8rVmp/3s3DGwlcP+g59/a3owkiuuU4/Jajd+qA32beDPHy4gJR2kkxagPY3j9kg==
+"@types/react-select@^3.0.22":
+  version "3.0.22"
+  resolved "https://registry.yarnpkg.com/@types/react-select/-/react-select-3.0.22.tgz#b88306365e99fa86809a5c0ce0f1b4e8d0b626bf"
+  integrity sha512-fqgmC979JPr/6476Pau6QnmI9zVV664R7Q92Ld1rgTn+umtUXT5X3+PO/x6O4imCZnh7XCqZcouabWAlAQJNpQ==
   dependencies:
     "@types/react" "*"
     "@types/react-dom" "*"
@@ -9529,10 +9529,10 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
-react-datepicker@^2.15.0:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-2.16.0.tgz#6bd68de94f5fb38c8f6a4370f3c612837c700e4e"
-  integrity sha512-TvcmSY27rn0JKvuJuIXNNS+niGQNdgtuG/CsBttVYhPOA9KmSw7c2PvQBPVEvzkyV+QPNJ8jN/KVJNj9uvopqA==
+react-datepicker@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-3.2.2.tgz#cd5351ab1bba0b34412dd11db3169801f8f8b2ef"
+  integrity sha512-/3D6hfhXcCNCbO8LICuQeoNDItWFyitGo+aLcsi0tAyJLtCInamYRwPIXhsEF+N6/qWim1yNyr71mqjj4YEBmg==
   dependencies:
     classnames "^2.2.6"
     date-fns "^2.0.1"

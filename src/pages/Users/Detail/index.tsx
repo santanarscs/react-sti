@@ -5,17 +5,7 @@ import api from '../../../services/api';
 import Delete from './Delete';
 import { useModal } from '../../../hooks/modal';
 import { Container, HeaderContent } from './styles';
-
-interface IUser {
-  id: string;
-  nome: string;
-  nome_guerra: string;
-  post_grad_id: string;
-  secao: string;
-  ramal: string;
-  email: string;
-  image_url: string;
-}
+import IUser from '../../../interfaces/IUser';
 
 const Detail: React.FC = () => {
   const { id } = useParams();
@@ -46,7 +36,7 @@ const Detail: React.FC = () => {
   return (
     <Container>
       <HeaderContent>
-        <h1>{`${user.post_grad_id} ${user.nome_guerra}`}</h1>
+        <h1>{`${user.graduation} ${user.name}`}</h1>
         <div>
           <Link to="/users">Voltar</Link>
           <Link to={`/users/edit/${user.id}`}>Editar</Link>
@@ -59,15 +49,15 @@ const Detail: React.FC = () => {
         <ul>
           <li>
             <strong>Nome Completo:</strong>
-            <span>{user.nome}</span>
+            <span>{user.full_name}</span>
           </li>
           <li>
             <strong>Posto/Graduação:</strong>
-            <span>{user.post_grad_id}</span>
+            <span>{user.graduation}</span>
           </li>
           <li>
             <strong>Seção:</strong>
-            <span>{user.secao}</span>
+            <span>{user.section}</span>
           </li>
         </ul>
         <img src={user.image_url} alt="" />

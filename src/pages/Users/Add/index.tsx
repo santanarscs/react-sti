@@ -10,21 +10,10 @@ import Select, { IOptionValue } from '../../../components/Select';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import DatePicker from '../../../components/Datepicker';
 import { useToast } from '../../../hooks/toast';
+import IUser from '../../../interfaces/IUser';
 
-interface IFormData {
-  name: string;
-  full_name: string;
-  graduation: string;
-  specialty: string;
-  saram: string;
-  mail: string;
-  section: string;
-  situation: string;
-  phone: string;
-  birthday: string;
-  last_promotion: string;
-  sequence: string;
-}
+type IFormData = Omit<IUser, 'id'>;
+
 interface ISpecialty {
   id: string;
   name: string;

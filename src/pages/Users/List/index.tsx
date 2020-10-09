@@ -5,17 +5,7 @@ import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
 
 import { Container, HeaderContent, Table, Row } from './styles';
-
-interface IUser {
-  id: string;
-  nome: string;
-  nome_guerra: string;
-  post_grad_id: string;
-  secao: string;
-  ramal: string;
-  email: string;
-  image_url: string;
-}
+import IUser from '../../../interfaces/IUser';
 
 const Users: React.FC = (): JSX.Element => {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -50,12 +40,12 @@ const Users: React.FC = (): JSX.Element => {
               onClick={() => history.push(`/users/detail/${user.id}`)}
             >
               <td>
-                <img src={user.image_url} alt={user.nome} />
+                <img src={user.image_url} alt={user.name} />
               </td>
-              <td>{`${user.post_grad_id} ${user.nome_guerra}`}</td>
-              <td>{user.secao}</td>
-              <td>{user.ramal}</td>
-              <td>{user.email}</td>
+              <td>{`${user.graduation} ${user.name}`}</td>
+              <td>{user.section}</td>
+              <td>{user.phone}</td>
+              <td>{user.mail}</td>
             </Row>
           ))}
         </tbody>

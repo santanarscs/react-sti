@@ -12,9 +12,27 @@ import Select, { IOptionValue } from '../../../components/Select';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import DatePicker from '../../../components/Datepicker';
 import { useToast } from '../../../hooks/toast';
-import IUser from '../../../interfaces/IUser';
+import IBoard from '../../../interfaces/IBoard';
 
-type IFormData = Omit<IUser, 'id'>;
+interface IFormData {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  specialty_id: string;
+  board_id: string;
+  graduation_id: string;
+  section_id: string;
+  saram: string;
+  full_name: string;
+  situation: string;
+  phone: string;
+  birthday: Date;
+  last_promotion: Date;
+  sequence: string;
+  provider: boolean;
+}
+
 interface ISpecialty {
   id: string;
   name: string;
@@ -31,6 +49,7 @@ const Edit: React.FC = () => {
   const [initialData, setInitialData] = useState<IFormData>();
   const [specialties, setSpecialties] = useState<IOptionValue[]>([]);
   const [graduations, setGraduations] = useState<IOptionValue[]>([]);
+  const [boards, setBoards] = useState<IOptionValue[]>([]);
   const [sections, setSections] = useState<IOptionValue[]>([]);
 
   const history = useHistory();
@@ -43,6 +62,26 @@ const Edit: React.FC = () => {
         ...response.data,
         birthday: parseISO(response.data.birthday),
         last_promotion: parseISO(response.data.last_promotion),
+        graduation_id: {
+          value: response.data.graduation.id,
+          label: response.data.graduation.name,
+        },
+        board_id: {
+          value: response.data.board.id,
+          label: response.data.board.name,
+        },
+        specialty_id: {
+          value: response.data.specialty.id,
+          label: response.data.specialty.name,
+        },
+        section_id: {
+          value: response.data.section.id,
+          label: response.data.section.name,
+        },
+        situation: {
+          label: response.data.situation,
+          value: response.data.situation,
+        },
       };
       setInitialData(data);
     });
@@ -51,6 +90,14 @@ const Edit: React.FC = () => {
   useEffect(() => {
     api.get<ISpecialty[]>('specialties').then((response) =>
       setSpecialties(
+        response.data.map((item) => ({
+          value: item.id,
+          label: item.name,
+        })),
+      ),
+    );
+    api.get<IBoard[]>('boards').then((response) =>
+      setBoards(
         response.data.map((item) => ({
           value: item.id,
           label: item.name,
@@ -81,12 +128,13 @@ const Edit: React.FC = () => {
       const schema = Yup.object().shape({
         name: Yup.string().required('O nome de guerra é obrigatório'),
         full_name: Yup.string().required('O nome completo é obrigatório'),
-        graduation: Yup.string().required('Posto/ graduação é obrigatório'),
-        specialty: Yup.string().required('A especialidade é obrigatório'),
-        mail: Yup.string()
+        graduation_id: Yup.string().required('Posto/ graduação é obrigatório'),
+        specialty_id: Yup.string().required('A especialidade é obrigatório'),
+        board_id: Yup.string().required('Quadro é obrigatório'),
+        email: Yup.string()
           .email('Digite um e-mail válido')
           .required('O e-mail é obrigatório'),
-        section: Yup.string().required('A seção é obrigatório'),
+        section_id: Yup.string().required('A seção é obrigatório'),
         situation: Yup.string().required('A situação é obrigatório'),
         phone: Yup.string().required('O ramal é obrigatório'),
         birthday: Yup.string().required('A data de aniversário é obrigatório'),
@@ -128,13 +176,19 @@ const Edit: React.FC = () => {
             <Select
               label="Posto/Graduação"
               placeholder="Posto ou graduação"
-              name="graduation"
+              name="graduation_id"
               options={graduations}
+            />
+            <Select
+              label="Quadro"
+              placeholder="Quadro"
+              name="board_id"
+              options={boards}
             />
             <Select
               label="Especialidade"
               placeholder="Especialidade"
-              name="specialty"
+              name="specialty_id"
               options={specialties}
             />
             <Input
@@ -150,13 +204,13 @@ const Edit: React.FC = () => {
               placeholder="Nome completo"
               name="full_name"
             />
-            <Input label="E-mail" placeholder="E-mail" name="mail" />
+            <Input label="E-mail" placeholder="E-mail" name="email" />
           </Row>
           <Row>
             <Select
               label="Seção"
               placeholder="Seção"
-              name="section"
+              name="section_id"
               options={sections}
             />
 
@@ -165,9 +219,9 @@ const Edit: React.FC = () => {
               placeholder="Situação"
               name="situation"
               options={[
-                { value: 1, label: 'Ativa' },
-                { value: 1, label: 'Reserva' },
-                { value: 1, label: 'R1' },
+                { value: 'Ativa', label: 'Ativa' },
+                { value: 'Reserva', label: 'Reserva' },
+                { value: 'R1', label: 'R1' },
               ]}
             />
             <Input label="Ramal" placeholder="Ramal" name="phone" />

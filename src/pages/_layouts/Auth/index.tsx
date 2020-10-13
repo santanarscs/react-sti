@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { SubmitHandler, FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -25,7 +25,7 @@ const Auth: React.FC = (): JSX.Element => {
   const history = useHistory();
   const { signIn } = useAuth();
   const { addToast } = useToast();
-  const handleSubmit = useCallback(
+  const handleSubmit: SubmitHandler<ISignInFormData> = useCallback(
     async (data: ISignInFormData) => {
       try {
         setLoading(true);

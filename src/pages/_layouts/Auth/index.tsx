@@ -12,6 +12,8 @@ import { Container } from './styles';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import { useToast } from '../../../hooks/toast';
 
+import LogoDirens from '../../../assets/images/DIRENS_COLORIDO.png';
+
 interface ISignInFormData {
   email: string;
   password: string;
@@ -20,16 +22,13 @@ interface ISignInFormData {
 const Auth: React.FC = (): JSX.Element => {
   const formRef = useRef<FormHandles>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [formData, setFormData] = useState<ISignInFormData>({
-    email: '',
-    password: '',
-  });
   const history = useHistory();
   const { signIn } = useAuth();
   const { addToast } = useToast();
   const handleSubmit = useCallback(
     async (data: ISignInFormData) => {
       try {
+        setLoading(true);
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
           email: Yup.string()
@@ -45,6 +44,7 @@ const Auth: React.FC = (): JSX.Element => {
         history.push('/dashboard');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
+          setLoading(true);
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
           return;
@@ -62,7 +62,7 @@ const Auth: React.FC = (): JSX.Element => {
   return (
     <Container>
       <Form ref={formRef} onSubmit={handleSubmit}>
-        <h1>Entre com suas credenciais</h1>
+        <img src={LogoDirens} alt="Direns" />
         <Input
           icon={FiMail}
           type="email"

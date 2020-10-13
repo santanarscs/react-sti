@@ -8,6 +8,12 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   form {
+    min-width: 40rem;
+    img {
+      align-self: center;
+      margin-bottom: 2rem;
+      width: 10rem;
+    }
     h1 {
       font-size: 3rem;
     }

@@ -1,5 +1,6 @@
 import React, { createContext, useState, useCallback, useContext } from 'react';
 import api from '../services/api';
+import { useToast } from './toast';
 
 interface IAuthState {
   token: string;
@@ -24,9 +25,10 @@ interface IAuthContextData {
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
+  const { addToast } = useToast();
   const [data, setData] = useState<IAuthState>(() => {
-    const token = localStorage.getItem('@GCac:token');
-    const user = localStorage.getItem('@GCac:user');
+    const token = localStorage.getItem('@DIRENS-STI:token');
+    const user = localStorage.getItem('@DIRENS-STI:user');
 
     if (token && user) {
       api.defaults.headers.Authorization = `Bearer ${token}`;
@@ -49,8 +51,8 @@ const AuthProvider: React.FC = ({ children }) => {
   });
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@GCac:token');
-    localStorage.removeItem('@GCac:user');
+    localStorage.removeItem('@DIRENS-STI:token');
+    localStorage.removeItem('@DIRENS-STI:user');
     setData({} as IAuthState);
   }, []);
 
@@ -78,17 +80,21 @@ const AuthProvider: React.FC = ({ children }) => {
         });
         const { token, user } = response.data;
 
-        localStorage.setItem('@GCac:token', token);
-        localStorage.setItem('@GCac:user', JSON.stringify(user));
+        localStorage.setItem('@DIRENS-STI:token', token);
+        localStorage.setItem('@DIRENS-STI:user', JSON.stringify(user));
         api.defaults.headers.Authorization = `Bearer ${token}`;
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         setupInvalidSessionInterceptor();
         setData({ token, user });
       } catch {
-        alert('Problema na autenticação, contate o administrador');
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação',
+          description: 'Usuário ou senha inválidos.',
+        });
       }
     },
-    [setupInvalidSessionInterceptor],
+    [setupInvalidSessionInterceptor, addToast],
   );
 
   return (

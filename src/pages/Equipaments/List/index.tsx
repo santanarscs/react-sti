@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-import { FiMenu } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
-import { Container, Table, Row, MenuActionItem } from './styles';
+import { Container, Table, Row } from './styles';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
-import Dropdown from '../../../components/Dropdown';
+import IEquipament from '../../../interfaces/IEquipament';
 
 const List: React.FC = () => {
-  const [equipaments, setEquipaments] = useState([]);
+  const [equipaments, setEquipaments] = useState<IEquipament[]>([]);
   useEffect(() => {
-    api.get('equipaments').then((response) => setEquipaments(response.data));
+    api
+      .get<IEquipament[]>('equipaments')
+      .then((response) => setEquipaments(response.data));
   }, []);
   return (
     <Container>
@@ -19,40 +19,16 @@ const List: React.FC = () => {
         <thead>
           <tr>
             <th>#</th>
-            <th>BMP</th>
             <th>Descrição</th>
-            <th>Local</th>
-            <th>Usuário</th>
-            <th>Ações</th>
+            <th>BMP</th>
           </tr>
         </thead>
         <tbody>
-          {equipaments.map((equipament: any) => (
+          {equipaments.map((equipament) => (
             <Row key={equipament.id}>
               <td>{equipament.id}</td>
+              <td>{equipament.description}</td>
               <td>{equipament.bpm}</td>
-              <td>{equipament.descricao}</td>
-              <td>{equipament.local}</td>
-              <td>{equipament.usuario}</td>
-              <td>
-                <Dropdown icon={FiMenu}>
-                  <MenuActionItem>
-                    <Link to={`/equipaments/detail/${equipament.id}`}>
-                      <span>Detalhes</span>
-                    </Link>
-                  </MenuActionItem>
-                  <MenuActionItem>
-                    <Link to={`/equipaments/edit/${equipament.id}`}>
-                      <span>Editar</span>
-                    </Link>
-                  </MenuActionItem>
-                  <MenuActionItem>
-                    <button type="button" onClick={() => alert('remover')}>
-                      <span>Remover</span>
-                    </button>
-                  </MenuActionItem>
-                </Dropdown>
-              </td>
             </Row>
           ))}
         </tbody>

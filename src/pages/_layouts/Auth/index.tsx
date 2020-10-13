@@ -44,7 +44,6 @@ const Auth: React.FC = (): JSX.Element => {
         history.push('/dashboard');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
-          setLoading(true);
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
           return;
@@ -55,6 +54,8 @@ const Auth: React.FC = (): JSX.Element => {
           description:
             'Ocorreu um error ao fazer login, cheque as credenciais.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [signIn, addToast, history],

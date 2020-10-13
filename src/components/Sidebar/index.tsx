@@ -9,8 +9,10 @@ import {
   FiMonitor,
 } from 'react-icons/fi';
 import { Container, Nav } from './styles';
+import { useAuth } from '../../hooks/auth';
 
 const Sidebar: React.FC = () => {
+  const { signOut } = useAuth();
   return (
     <Container>
       <div>
@@ -47,7 +49,7 @@ const Sidebar: React.FC = () => {
           </li>
         </Nav>
       </div>
-      <button type="button">
+      <button type="button" onClick={signOut}>
         <FiPower size={20} />
       </button>
     </Container>

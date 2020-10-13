@@ -13,7 +13,6 @@ import { Container, Nav } from './styles';
 const Sidebar: React.FC = () => {
   return (
     <Container>
-      <h1>STI</h1>
       <div>
         <Nav>
           <li>

@@ -27,6 +27,7 @@ export const Container = styled.aside`
 
 export const Nav = styled.ul`
   list-style: none;
+  margin-top: 6.4rem;
   li {
     display: flex;
     align-items: center;

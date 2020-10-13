@@ -40,12 +40,12 @@ const Users: React.FC = (): JSX.Element => {
               onClick={() => history.push(`/users/detail/${user.id}`)}
             >
               <td>
-                <img src={user.image_url} alt={user.name} />
+                <img src={user.avatar} alt={user.name} />
               </td>
-              <td>{`${user.graduation} ${user.name}`}</td>
-              <td>{user.section}</td>
+              <td>{`${user.graduation.name} ${user.name}`}</td>
+              <td>{user.section.name}</td>
               <td>{user.phone}</td>
-              <td>{user.mail}</td>
+              <td>{user.email}</td>
             </Row>
           ))}
         </tbody>

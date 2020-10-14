@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, Table, Row } from './styles';
+import { Link } from 'react-router-dom';
+import { FiPlus } from 'react-icons/fi';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
 import IEquipament from '../../../interfaces/IEquipament';
+import { Container, HeaderContent, Table, Row } from './styles';
 
 const List: React.FC = () => {
   const [equipaments, setEquipaments] = useState<IEquipament[]>([]);
@@ -14,7 +16,13 @@ const List: React.FC = () => {
   }, []);
   return (
     <Container>
-      <h1>Equipamentos</h1>
+      <HeaderContent>
+        <Link to="/equipaments/new">
+          <FiPlus size={20} />
+          Cadastrar
+        </Link>
+        <h1>Lista de equipamentos</h1>
+      </HeaderContent>
       <Table>
         <thead>
           <tr>

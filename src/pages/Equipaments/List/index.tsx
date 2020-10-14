@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiPlus } from 'react-icons/fi';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
@@ -9,6 +9,7 @@ import { Container, HeaderContent, Table, Row } from './styles';
 
 const List: React.FC = () => {
   const [equipaments, setEquipaments] = useState<IEquipament[]>([]);
+  const history = useHistory();
   useEffect(() => {
     api
       .get<IEquipament[]>('equipaments')
@@ -26,17 +27,22 @@ const List: React.FC = () => {
       <Table>
         <thead>
           <tr>
-            <th>#</th>
             <th>Descrição</th>
             <th>BMP</th>
+            <th>Service Tag</th>
           </tr>
         </thead>
         <tbody>
           {equipaments.map((equipament) => (
-            <Row key={equipament.id}>
-              <td>{equipament.id}</td>
+            <Row
+              key={equipament.id}
+              onClick={() =>
+                history.push(`/equipaments/detail/${equipament.id}`)
+              }
+            >
               <td>{equipament.description}</td>
               <td>{equipament.bpm}</td>
+              <td>{equipament.service_tag}</td>
             </Row>
           ))}
         </tbody>

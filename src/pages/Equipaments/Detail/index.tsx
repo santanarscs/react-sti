@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
-import { parseISO } from 'date-fns';
 import api from '../../../services/api';
 import Delete from './Delete';
 import Movimentation from './Movimentation';

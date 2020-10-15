@@ -103,10 +103,12 @@ const Add: React.FC = () => {
         section_id: Yup.string().required('A seção é obrigatório'),
         situation: Yup.string().required('A situação é obrigatório'),
         phone: Yup.string().required('O ramal é obrigatório'),
-        birthday: Yup.string().required('A data de aniversário é obrigatório'),
-        last_promotion: Yup.string().required(
-          'A data da última promoção é obrigatório',
-        ),
+        birthday: Yup.string()
+          .required('A data de aniversário é obrigatório')
+          .nullable(),
+        last_promotion: Yup.string()
+          .required('A data da última promoção é obrigatório')
+          .nullable(),
         sequence: Yup.string().required('A antiguidade na turma é obrigatório'),
       });
       await schema.validate(data, {

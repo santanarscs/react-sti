@@ -69,7 +69,7 @@ const Add: React.FC = () => {
           description: Yup.string().required('Descrição é obrigatório'),
           bpm: Yup.string().required('BPM é obrigatório'),
           service_tag: Yup.string().required('Service Tag é obrigatório'),
-          date: Yup.string().required('Data é obrigatório'),
+          date: Yup.string().required('Data é obrigatório').nullable(),
           section_id: Yup.string().required('Seção é obrigatório'),
           user_id: Yup.string(),
         });

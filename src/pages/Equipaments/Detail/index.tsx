@@ -1,21 +1,41 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
+import { parseISO } from 'date-fns';
 import api from '../../../services/api';
 import Delete from './Delete';
+import Movimentation from './Movimentation';
 import { Container, HeaderContent, HistoryContainer } from './styles';
 import IEquipament from '../../../interfaces/IEquipament';
 import { useModal } from '../../../hooks/modal';
+import IMovimentation from '../../../interfaces/IMovimentation';
 
 const Detail: React.FC = () => {
   const { id } = useParams();
-  const [equipament, setEquipament] = useState<IEquipament>();
+  const [equipament, setEquipament] = useState<IEquipament>({} as IEquipament);
+  const [movimentations, setMovimentations] = useState<IMovimentation[]>();
   const { openModal } = useModal();
   const history = useHistory();
+
+  const handleLoadMovimentations = useCallback(async () => {
+    const response = await api.get<IMovimentation[]>(
+      `/movimentations/equipaments/${id}`,
+    );
+    const data = response.data.map((movimentation) => {
+      const date = new Date(movimentation.date);
+      const dateFormated = date.toLocaleDateString('pt-BR');
+      return {
+        ...movimentation,
+        date: dateFormated,
+      };
+    });
+    setMovimentations(data);
+  }, [id]);
   useEffect(() => {
     api
       .get(`/equipaments/${id}`)
       .then((response) => setEquipament(response.data));
-  }, [id]);
+    handleLoadMovimentations();
+  }, [id, handleLoadMovimentations]);
 
   const handleRedirect = useCallback(() => {
     history.push('/equipaments');
@@ -27,6 +47,13 @@ const Detail: React.FC = () => {
       container: () => Delete({ id, handleRedirect }),
     });
   }, [id, openModal, handleRedirect]);
+
+  const handlOpenModalMovimentation = useCallback(() => {
+    openModal({
+      title: 'Adicionar Movimentação',
+      container: () => Movimentation({ id, handleLoadMovimentations }),
+    });
+  }, [openModal, id, handleLoadMovimentations]);
 
   if (!equipament) {
     return (
@@ -62,11 +89,13 @@ const Detail: React.FC = () => {
           <span>{equipament.service_tag}</span>
         </li>
       </ul>
-      {equipament.movimentations && (
+      {movimentations && (
         <HistoryContainer>
           <div>
             <h2>Histórico de movimentação</h2>
-            <button type="button">Movimentar</button>
+            <button type="button" onClick={handlOpenModalMovimentation}>
+              Movimentar
+            </button>
           </div>
           <table>
             <thead>
@@ -77,7 +106,7 @@ const Detail: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {equipament.movimentations.map((movimentation) => (
+              {movimentations.map((movimentation) => (
                 <tr key={movimentation.id}>
                   <td>{movimentation.date}</td>
                   <td>{movimentation.section.name}</td>

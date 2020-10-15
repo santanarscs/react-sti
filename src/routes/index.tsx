@@ -19,6 +19,7 @@ import AppointmentsList from '../pages/Appointments/List';
 import EquipamentsList from '../pages/Equipaments/List';
 import EquipamentDetail from '../pages/Equipaments/Detail';
 import EquipamentAdd from '../pages/Equipaments/Add';
+import EquipamentEdit from '../pages/Equipaments/Edit';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -40,6 +41,7 @@ const Routes: React.FC = () => (
       isPrivate
       component={EquipamentDetail}
     />
+    <Route path="/equipaments/edit/:id" isPrivate component={EquipamentEdit} />
     <Route path="/equipaments/new" isPrivate component={EquipamentAdd} />
     <Route path="/equipaments" isPrivate component={EquipamentsList} />
   </Switch>

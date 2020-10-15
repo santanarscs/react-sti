@@ -9,12 +9,21 @@ import { Container, HeaderContent, Table, Row } from './styles';
 
 const List: React.FC = () => {
   const [equipaments, setEquipaments] = useState<IEquipament[]>([]);
+  const [total, setTotal] = useState<number>(0);
+  const [limit, setLimit] = useState(5);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const history = useHistory();
+
   useEffect(() => {
-    api
-      .get<IEquipament[]>('equipaments')
-      .then((response) => setEquipaments(response.data));
-  }, []);
+    async function loadEquipaments() {
+      const params = { page: currentPage, limit };
+      const response = await api.get('/equipaments', { params });
+      setEquipaments(response.data);
+      setTotal(Number(response.headers['x-total-count']));
+    }
+    loadEquipaments();
+  }, [currentPage, limit]);
+
   return (
     <Container>
       <HeaderContent>
@@ -48,10 +57,10 @@ const List: React.FC = () => {
         </tbody>
       </Table>
       <Pagination
-        currentPage={1}
-        total={100}
-        setCurrentPage={() => console.log('alskdf')}
-        limit={10}
+        currentPage={currentPage}
+        total={total}
+        setCurrentPage={setCurrentPage}
+        limit={limit}
       />
     </Container>
   );

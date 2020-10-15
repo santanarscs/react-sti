@@ -39,6 +39,7 @@ const DatePicker: React.FC<IProps> = ({
         dateFormat="dd/MM/yyyy"
         {...rest}
       />
+      {error && <span>{`* ${error}`}</span>}
     </Container>
   );
 };

@@ -8,12 +8,23 @@ export const Container = styled.div`
     margin-bottom: 1rem;
   }
   margin-bottom: 1.5rem;
+  span {
+    padding-left: 1rem;
+    margin-top: 0.7rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    color: ${({ theme }) => theme.colors.error};
+    svg {
+      margin-right: 0.7rem;
+    }
+  }
 `;
 
 interface IContainerInputProps {
   isFocused: boolean;
   isField: boolean;
-  isErrored: boolean;
+  isErrored?: boolean;
 }
 export const ContainerInput = styled.div<IContainerInputProps>`
   background-color: rgba(0, 0, 0, 0.1);

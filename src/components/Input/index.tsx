@@ -6,7 +6,7 @@ import React, {
   useCallback,
 } from 'react';
 import { IconBaseProps } from 'react-icons';
-import { FiAlertCircle } from 'react-icons/fi';
+import { FiAlertCircle, FiAlertTriangle } from 'react-icons/fi';
 import { useField } from '@unform/core';
 
 import { Container, ContainerInput, Error } from './styles';
@@ -52,7 +52,7 @@ const Input: React.FC<IInputProps> = ({
       {label && <label htmlFor={fieldName}>{label}</label>}
       <ContainerInput
         style={containerStyle}
-        isErrored={!!error}
+        // isErrored={!!error}
         isFocused={isFocused}
         isField={isField}
       >
@@ -64,12 +64,8 @@ const Input: React.FC<IInputProps> = ({
           ref={inputRef}
           {...rest}
         />
-        {error && (
-          <Error title={error}>
-            <FiAlertCircle size={20} color="#E83F5B" />
-          </Error>
-        )}
       </ContainerInput>
+      {error && <span>{`* ${error}`}</span>}
     </Container>
   );
 };

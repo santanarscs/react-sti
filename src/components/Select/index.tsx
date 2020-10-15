@@ -20,7 +20,7 @@ interface IProps extends SelectProps<OptionTypeBase> {
 
 const SelectInput: React.FC<IProps> = ({ name, label, ...rest }) => {
   const selectRef = useRef(null);
-  const { fieldName, defaultValue, registerField } = useField(name);
+  const { fieldName, defaultValue, registerField, error } = useField(name);
 
   const colourStyles: StylesConfig = {
     control: (styles) => ({
@@ -88,6 +88,7 @@ const SelectInput: React.FC<IProps> = ({ name, label, ...rest }) => {
         maxMenuHeight={250}
         {...rest}
       />
+      {error && <span>{`* ${error}`}</span>}
     </Container>
   );
 };

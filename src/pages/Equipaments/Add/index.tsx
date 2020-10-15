@@ -1,15 +1,15 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { SubmitHandler, FormHandles, Scope } from '@unform/core';
+import { SubmitHandler, FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import Input from '../../../components/Input';
-import { Container } from './styles';
 import api from '../../../services/api';
 import Select, { IOptionValue } from '../../../components/Select';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import DatePicker from '../../../components/Datepicker';
 import { useToast } from '../../../hooks/toast';
+import { Container } from './styles';
 
 interface IFormData {
   description: string;
@@ -69,23 +69,21 @@ const Add: React.FC = () => {
           description: Yup.string().required('Descrição é obrigatório'),
           bpm: Yup.string().required('BPM é obrigatório'),
           service_tag: Yup.string().required('Service Tag é obrigatório'),
-          movimentation: Yup.object().shape({
-            date: Yup.string().required('Data é obrigatório'),
-            section_id: Yup.string().required('Seção é obrigatório'),
-            user_id: Yup.string(),
-          }),
+          date: Yup.string().required('Data é obrigatório'),
+          section_id: Yup.string().required('Seção é obrigatório'),
+          user_id: Yup.string(),
         });
         await schema.validate(data, {
           abortEarly: false,
         });
-        const { description, bpm, service_tag, movimentation } = data;
+        const { description, bpm, service_tag, ...rest } = data;
         const { data: equipament } = await api.post('equipaments', {
           description,
           bpm,
           service_tag,
         });
-        await api.post('equipaments/movimentations', {
-          ...movimentation,
+        await api.post('movimentations', {
+          ...rest,
           equipament_id: equipament.id,
         });
         addToast({
@@ -122,26 +120,25 @@ const Add: React.FC = () => {
           placeholder="Service Tag"
           name="service_tag"
         />
-        <h2>Movimentação</h2>
-        <Scope path="movimentation">
-          <DatePicker
-            label="Data da movimentação"
-            placeholder="Data da movimentação"
-            name="date"
-          />
-          <Select
-            label="Seção"
-            placeholder="Seção"
-            name="section_id"
-            options={sections}
-          />
-          <Select
-            label="Usuário"
-            placeholder="Usuário"
-            name="user_id"
-            options={users}
-          />
-        </Scope>
+        {/* <div style={{ paddingTop: '4rem' }}> */}
+        <DatePicker
+          label="Data da movimentação"
+          placeholder="Data da movimentação"
+          name="date"
+        />
+        <Select
+          label="Seção"
+          placeholder="Seção"
+          name="section_id"
+          options={sections}
+        />
+        <Select
+          label="Usuário"
+          placeholder="Usuário"
+          name="user_id"
+          options={users}
+        />
+        {/* </div> */}
 
         <button type="submit">Cadastrar</button>
       </Form>

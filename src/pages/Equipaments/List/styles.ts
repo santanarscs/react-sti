@@ -1,35 +1,7 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
-export const Container = styled.div`
-  h1 {
-    margin-bottom: 2rem;
-  }
-`;
-
-export const HeaderContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  a {
-    display: flex;
-    font-weight: 500;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: ${({ theme }) => theme.colors.white};
-    text-transform: uppercase;
-    height: 5rem;
-    padding: 0 1rem;
-    background: ${({ theme }) => theme.colors.primary};
-    border-radius: ${({ theme }) => theme.radii.default};
-    box-shadow: ${({ theme }) => theme.shadows.default};
-    &:hover {
-      background: ${({ theme }) => shade(0.2, theme.colors.primary)};
-    }
-  }
-`;
+export const Container = styled.div``;
 
 export const Table = styled.table`
   width: 100%;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 import { useHistory } from 'react-router-dom';
-import { useQueryParam, StringParam } from 'use-query-params';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
 import IEquipament from '../../../interfaces/IEquipament';

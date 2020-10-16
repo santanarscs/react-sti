@@ -4,14 +4,22 @@ import { FiPlus } from 'react-icons/fi';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
 
-import { Container, HeaderContent, Table, Row } from './styles';
 import IUser from '../../../interfaces/IUser';
+import { Container, HeaderContent, Table, Row } from './styles';
 
 const Users: React.FC = (): JSX.Element => {
   const [users, setUsers] = useState<IUser[]>([]);
   const history = useHistory();
   useEffect(() => {
-    api.get<IUser[]>('/users').then((response) => setUsers(response.data));
+    api.get<IUser[]>('/users').then((response) => {
+      const usersData = response.data.map((user) => ({
+        ...user,
+        avatar: user.avatar
+          ? `${process.env.REACT_APP_SERVER_URL}/uploads/${user.avatar}`
+          : `https://ui-avatars.com/api/?name=${user.full_name}`,
+      }));
+      setUsers(usersData);
+    });
   }, []);
 
   return (

@@ -54,8 +54,7 @@ export const Row = styled.tr`
   td {
     height: 5.6rem;
     img {
-      height: 4rem;
-      width: 3rem;
+      height: 100%;
       border-radius: ${({ theme }) => theme.radii.default};
     }
   }
@@ -65,10 +64,9 @@ export const Row = styled.tr`
   }
   td:last-child {
     border-radius: 0 1rem 1rem 0;
-    padding-right: 16px;
+    padding-right: 1.6rem;
   }
   background: #323846;
-  font-size: 16px;
   transition: background 0.3s;
   &:hover {
     cursor: pointer;

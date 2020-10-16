@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  margin-top: 6rem;
+
   h1 {
-    margin-bottom: 2rem;
+    font-weight: normal;
+    margin-bottom: 3.2rem;
   }
   form {
     background: #323846;

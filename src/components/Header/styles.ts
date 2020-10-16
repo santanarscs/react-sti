@@ -1,36 +1,63 @@
 import styled from 'styled-components';
+import { Form as UForm } from '@unform/web';
+import { shade } from 'polished';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  @media (max-width: 500px) {
-    padding: 0 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 3.2rem;
+  margin-top: 6rem;
+  h1 {
+    font-weight: normal;
+    margin-left: auto;
   }
 `;
 
-export const Content = styled.div`
-  height: 64px;
-  max-width: 1200px;
-  margin: 0 20px;
+export const Form = styled(UForm)`
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  button {
-    border: none;
-    background: transparent;
-    color: #e74c3c;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    font-weight: 500;
-    svg {
-      margin-right: 5px;
-    }
-  }
+  max-width: 41.5rem;
+  width: 100%;
+`;
 
-  @media (max-width: 690px) {
-    height: 30px;
+export const SearchButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0 1.6rem;
+  margin-left: 1.6rem;
+  border-radius: ${({ theme }) => theme.radii.default};
+  background: ${({ theme }) => theme.colors.primary};
+  transition: ${({ theme }) => theme.transition.default};
+  color: ${({ theme }) => theme.colors.white};
+  &:hover {
+    background: ${({ theme }) => shade(0.2, theme.colors.primary)};
   }
-  @media (max-width: 540px) {
-    height: 20px;
+  &:disabled {
+    cursor: not-allowed;
+    background: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+export const ContainerLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.5rem;
+  margin-left: 1.6rem;
+  font-weight: 500;
+  border: none;
+  border-radius: ${({ theme }) => theme.radii.default};
+  padding: 0 1.6rem;
+  color: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.primary};
+  text-decoration: none;
+  transition: ${({ theme }) => theme.transition.default};
+  &:hover {
+    background: ${({ theme }) => shade(0.1, theme.colors.primary)};
+  }
+  svg {
+    margin-right: 0.8rem;
   }
 `;

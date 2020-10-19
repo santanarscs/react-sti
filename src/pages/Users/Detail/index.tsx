@@ -46,7 +46,10 @@ const Detail: React.FC = () => {
         </div>
       </HeaderContent>
       <div>
-        <img src={user.avatar} alt="" />
+        <img
+          src={`${process.env.REACT_APP_SERVER_URL}/uploads/${user.avatar}`}
+          alt=""
+        />
         <ul>
           <li>
             <strong>Nome Completo:</strong>

@@ -28,6 +28,11 @@ export const HeaderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 6rem;
+  margin-bottom: 3.2rem;
+  h1 {
+    font-weight: normal;
+  }
   > div {
     display: flex;
 

@@ -11,13 +11,12 @@ export const Table = styled.table`
     th {
       font-size: 1.8rem;
       font-weight: 500;
+      text-align: left;
     }
     th:first-child {
-      text-align: left;
       padding-left: 1.6rem;
     }
     th:last-child {
-      text-align: right;
       padding-right: 1.6rem;
     }
   }
@@ -32,7 +31,6 @@ export const Row = styled.tr`
     border-radius: 1rem 0 0 1rem;
   }
   td:last-child {
-    text-align: right;
     border-radius: 0 1rem 1rem 0;
     padding-right: 16px;
   }

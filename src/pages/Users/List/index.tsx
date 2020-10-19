@@ -1,14 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiPlus } from 'react-icons/fi';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
 
 import IUser from '../../../interfaces/IUser';
-import { Container, HeaderContent, Table, Row } from './styles';
+import { Container, Table, Row } from './styles';
+import Header from '../../../components/Header';
+
+interface ISearchFormData {
+  term: string;
+}
 
 const Users: React.FC = (): JSX.Element => {
   const [users, setUsers] = useState<IUser[]>([]);
+
+  const [total, setTotal] = useState<number>(0);
+  const [limit] = useState(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [queryName, setQueryName] = useState<string | undefined>();
+
   const history = useHistory();
   useEffect(() => {
     api.get<IUser[]>('/users').then((response) => {
@@ -22,15 +32,23 @@ const Users: React.FC = (): JSX.Element => {
     });
   }, []);
 
+  const handleSearchSubmit = useCallback(
+    ({ term }: ISearchFormData) => {
+      setCurrentPage(1);
+      setQueryName(term || undefined);
+    },
+    [setQueryName, setCurrentPage],
+  );
+
   return (
     <Container>
-      <HeaderContent>
-        <Link to="/users/new">
-          <FiPlus size={20} />
-          Cadastrar
-        </Link>
-        <h1>Lista de usuários</h1>
-      </HeaderContent>
+      <Header
+        initialName={queryName}
+        onSubmit={handleSearchSubmit}
+        createPage="/users/new"
+        title="Usuários"
+        placeholder="Digite um termo de pesquisa"
+      />
       <Table>
         <thead>
           <tr>
@@ -59,10 +77,10 @@ const Users: React.FC = (): JSX.Element => {
         </tbody>
       </Table>
       <Pagination
-        currentPage={1}
-        total={100}
-        setCurrentPage={() => console.log('alskdf')}
-        limit={10}
+        currentPage={currentPage}
+        total={total}
+        setCurrentPage={setCurrentPage}
+        limit={limit}
       />
     </Container>
   );

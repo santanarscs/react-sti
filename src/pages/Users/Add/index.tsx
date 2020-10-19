@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { SubmitHandler, FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -11,6 +11,7 @@ import getValidationErrors from '../../../utils/getValidationErrors';
 import DatePicker from '../../../components/Datepicker';
 import { useToast } from '../../../hooks/toast';
 import IBoard from '../../../interfaces/IBoard';
+import Upload from '../../../components/Upload';
 
 interface IFormData {
   id: string;
@@ -25,8 +26,8 @@ interface IFormData {
   full_name: string;
   situation: string;
   phone: string;
-  birthday: Date;
-  last_promotion: Date;
+  birthday: string;
+  last_promotion: string;
   sequence: string;
   provider: boolean;
 }
@@ -49,9 +50,14 @@ const Add: React.FC = () => {
   const [graduations, setGraduations] = useState<IOptionValue[]>([]);
   const [boards, setBoards] = useState<IOptionValue[]>([]);
   const [sections, setSections] = useState<IOptionValue[]>([]);
+  const [avatar, setAvatar] = useState<File>();
 
   const history = useHistory();
   const { addToast } = useToast();
+
+  const submitFile = useCallback((file: File[]) => {
+    setAvatar(file[0]);
+  }, []);
 
   useEffect(() => {
     api.get<ISpecialty[]>('specialties').then((response) =>
@@ -114,13 +120,30 @@ const Add: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
-      const user = {
-        ...data,
-        password: '123456',
-        provider: true,
-      };
 
-      await api.post('users', user);
+      const formData = new FormData();
+
+      formData.append('name', data.name);
+      formData.append('board_id', data.board_id);
+      formData.append('graduation_id', data.graduation_id);
+      formData.append('specialty_id', data.specialty_id);
+      formData.append('email', data.email);
+      formData.append('section_id', data.section_id);
+      formData.append('phone', data.phone);
+      formData.append('birthday', data.birthday);
+      formData.append('last_promotion', data.last_promotion);
+      formData.append('sequence', data.sequence);
+      formData.append('full_name', data.full_name);
+      formData.append('saram', data.saram);
+      formData.append('situation', data.situation);
+      formData.append('password', '123456');
+      formData.append('provider', 'true');
+
+      if (avatar) {
+        formData.append('avatar', avatar);
+      }
+
+      await api.post('users', formData);
       addToast({
         type: 'success',
         title: 'Usuário cadastrado!',
@@ -216,6 +239,7 @@ const Add: React.FC = () => {
             name="sequence"
           />
         </Row>
+        <Upload onUpload={submitFile} />
         <button type="submit">Cadastrar</button>
       </Form>
     </Container>

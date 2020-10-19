@@ -20,8 +20,12 @@ const Users: React.FC = (): JSX.Element => {
   const [queryName, setQueryName] = useState<string | undefined>();
 
   const history = useHistory();
+
   useEffect(() => {
-    api.get<IUser[]>('/users').then((response) => {
+    async function loadUsers() {
+      const params = { page: currentPage, limit, queryName };
+      const response = await api.get<IUser[]>('/users', { params });
+
       const usersData = response.data.map((user) => ({
         ...user,
         avatar: user.avatar
@@ -29,8 +33,10 @@ const Users: React.FC = (): JSX.Element => {
           : `https://ui-avatars.com/api/?name=${user.full_name}`,
       }));
       setUsers(usersData);
-    });
-  }, []);
+      setTotal(Number(response.headers['x-total-count']));
+    }
+    loadUsers();
+  }, [currentPage, limit, queryName]);
 
   const handleSearchSubmit = useCallback(
     ({ term }: ISearchFormData) => {

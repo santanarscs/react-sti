@@ -22,6 +22,7 @@ import EquipamentAdd from '../pages/Equipaments/Add';
 import EquipamentEdit from '../pages/Equipaments/Edit';
 
 import SectionsList from '../pages/Sections/List';
+import SectionAdd from '../pages/Sections/Add';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -47,6 +48,7 @@ const Routes: React.FC = () => (
     <Route path="/equipaments/new" isPrivate component={EquipamentAdd} />
     <Route path="/equipaments" isPrivate component={EquipamentsList} />
 
+    <Route path="/sections/new" isPrivate component={SectionAdd} />
     <Route path="/sections" isPrivate component={SectionsList} />
   </Switch>
 );

@@ -7,6 +7,7 @@ import {
   FiUsers,
   FiCalendar,
   FiMonitor,
+  FiMapPin,
 } from 'react-icons/fi';
 import { Container, Nav } from './styles';
 import { useAuth } from '../../hooks/auth';
@@ -27,6 +28,12 @@ const Sidebar: React.FC = () => {
             <NavLink to="/users" activeClassName="is-active">
               <FiUsers size={20} />
               <span>Usuários</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/sections" activeClassName="is-active">
+              <FiMapPin size={20} />
+              <span>Seções</span>
             </NavLink>
           </li>
           <li>

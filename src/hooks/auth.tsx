@@ -37,11 +37,11 @@ const AuthProvider: React.FC = ({ children }) => {
           return response;
         },
         (error) => {
-          const { response } = error;
-          if (response.data.error === 'Token invalid') {
-            // eslint-disable-next-line @typescript-eslint/no-use-before-define
-            signOut();
-          }
+          // const { response } = error;
+          // if (response.data?.error === 'Token invalid') {
+          // eslint-disable-next-line @typescript-eslint/no-use-before-define
+          signOut();
+          // }
           return Promise.reject(error);
         },
       );

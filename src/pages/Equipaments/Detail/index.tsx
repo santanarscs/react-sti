@@ -110,7 +110,7 @@ const Detail: React.FC = () => {
                   <td>{movimentation.date}</td>
                   <td>{movimentation.section.name}</td>
                   {movimentation.user ? (
-                    <td>{`${movimentation.user.graduation.name} ${movimentation.user.name}`}</td>
+                    <td>{movimentation.user}</td>
                   ) : (
                     <td>Usuário não informado</td>
                   )}

@@ -18,7 +18,7 @@ interface IFormData {
   movimentation: {
     date: Date;
     section_id: string;
-    user_id: string;
+    user: string;
   };
 }
 
@@ -28,11 +28,7 @@ interface ISection {
   description: string;
 }
 interface IUser {
-  id: string;
-  name: string;
-  graduation: {
-    name: string;
-  };
+  description: string;
 }
 
 const Add: React.FC = () => {
@@ -51,11 +47,11 @@ const Add: React.FC = () => {
         })),
       ),
     );
-    api.get<IUser[]>('users').then((response) =>
+    api.get<IUser[]>('users/ad').then((response) =>
       setUsers(
         response.data.map((item) => ({
-          value: item.id,
-          label: `${item.graduation.name} ${item.name}`,
+          value: item.description,
+          label: item.description,
         })),
       ),
     );
@@ -67,11 +63,11 @@ const Add: React.FC = () => {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
           description: Yup.string().required('Descrição é obrigatório'),
-          bpm: Yup.string().required('BPM é obrigatório'),
+          bpm: Yup.string(),
           service_tag: Yup.string().required('Service Tag é obrigatório'),
           date: Yup.string().required('Data é obrigatório').nullable(),
           section_id: Yup.string().required('Seção é obrigatório'),
-          user_id: Yup.string(),
+          user: Yup.string(),
         });
         await schema.validate(data, {
           abortEarly: false,
@@ -135,7 +131,7 @@ const Add: React.FC = () => {
         <Select
           label="Usuário"
           placeholder="Usuário"
-          name="user_id"
+          name="user"
           options={users}
         />
         {/* </div> */}

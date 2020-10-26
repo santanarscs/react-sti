@@ -18,7 +18,7 @@ interface IMovimentationProps {
 interface IFormData {
   date: Date;
   section_id: string;
-  user_id: string;
+  user: string;
 }
 
 interface ISection {
@@ -27,11 +27,7 @@ interface ISection {
   description: string;
 }
 interface IUser {
-  id: string;
-  name: string;
-  graduation: {
-    name: string;
-  };
+  description: string;
 }
 
 const Movimentation: React.FC<IMovimentationProps> = ({
@@ -53,11 +49,11 @@ const Movimentation: React.FC<IMovimentationProps> = ({
         })),
       ),
     );
-    api.get<IUser[]>('users').then((response) =>
+    api.get<IUser[]>('users/ad').then((response) =>
       setUsers(
         response.data.map((item) => ({
-          value: item.id,
-          label: `${item.graduation.name} ${item.name}`,
+          value: item.description,
+          label: item.description,
         })),
       ),
     );
@@ -70,7 +66,7 @@ const Movimentation: React.FC<IMovimentationProps> = ({
         const schema = Yup.object().shape({
           date: Yup.string().required('Data é obrigatório'),
           section_id: Yup.string().required('Seção é obrigatório'),
-          user_id: Yup.string(),
+          user: Yup.string(),
         });
         await schema.validate(data, {
           abortEarly: false,
@@ -121,7 +117,7 @@ const Movimentation: React.FC<IMovimentationProps> = ({
         <Select
           label="Usuário"
           placeholder="Usuário"
-          name="user_id"
+          name="user"
           options={users}
         />
 

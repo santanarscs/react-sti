@@ -1,12 +1,7 @@
 export default interface IMovimentation {
   id: string;
   date: string;
-  user?: {
-    name: string;
-    graduation: {
-      name: string;
-    };
-  };
+  user?: string;
   section: {
     name: string;
   };

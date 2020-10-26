@@ -1,67 +1,88 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
-import { FiMenu } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
-import { Container, Table, Row, MenuActionItem } from './styles';
+import { useHistory } from 'react-router-dom';
+import { Container, Table, Row } from './styles';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
 import Dropdown from '../../../components/Dropdown';
+import Header from '../../../components/Header';
+
+interface ISearchFormData {
+  term: string;
+}
+
+interface IOrder {
+  id: string;
+  description: string;
+  created_at: Date;
+  user: string;
+  type: string;
+  status: string;
+}
 
 const List: React.FC = () => {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<IOrder[]>([]);
+  const [total, setTotal] = useState<number>(0);
+  const [limit] = useState(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [queryName, setQueryName] = useState<string | undefined>();
+  const history = useHistory();
+
   useEffect(() => {
-    api.get('orders').then((response) => setOrders(response.data));
-  }, []);
+    async function loadOrders() {
+      const params = { page: currentPage, limit, queryName };
+      const response = await api.get('/orders', { params });
+      setOrders(response.data);
+      setTotal(Number(response.headers['x-total-count']));
+    }
+    loadOrders();
+  }, [currentPage, limit, queryName]);
+
+  const handleSearchSubmit = useCallback(
+    ({ term }: ISearchFormData) => {
+      setCurrentPage(1);
+      setQueryName(term || undefined);
+    },
+    [setQueryName, setCurrentPage],
+  );
+
   return (
     <Container>
-      <h1>Ordem de serviços</h1>
+      <Header
+        initialName={queryName}
+        onSubmit={handleSearchSubmit}
+        createPage="/orders/new"
+        title="Serviços"
+        placeholder="Digite um termo de pesquisa"
+      />
       <Table>
         <thead>
           <tr>
-            <th>#</th>
             <th>Data de criação</th>
             <th>Usuário</th>
             <th>Descrição</th>
             <th>Tipo</th>
-            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {orders.map((order: any) => (
-            <Row key={order.id}>
-              <td>{order.id}</td>
-              <td>{order.data_criacao}</td>
-              <td>{order.usuario}</td>
-              <td>{order.descricao}</td>
-              <td>{order.tipo}</td>
-              <td>
-                <Dropdown icon={FiMenu}>
-                  <MenuActionItem>
-                    <Link to={`orders/detail/${order.id}`}>
-                      <span>Detalhes</span>
-                    </Link>
-                  </MenuActionItem>
-                  <MenuActionItem>
-                    <Link to={`orders/edit/${order.id}`}>
-                      <span>Editar</span>
-                    </Link>
-                  </MenuActionItem>
-                  <MenuActionItem>
-                    <button type="button" onClick={() => alert('remover')}>
-                      <span>Remover</span>
-                    </button>
-                  </MenuActionItem>
-                </Dropdown>
-              </td>
+          {orders.map((order) => (
+            <Row
+              key={order.id}
+              onClick={() => history.push(`/orders/detail/${order.id}`)}
+            >
+              <td>{order.created_at}</td>
+              <td>{order.user}</td>
+              <td>{order.description}</td>
+              <td>{order.type}</td>
             </Row>
           ))}
         </tbody>
       </Table>
       <Pagination
-        currentPage={1}
-        total={100}
-        setCurrentPage={() => console.log('alskdf')}
-        limit={10}
+        currentPage={currentPage}
+        total={total}
+        setCurrentPage={setCurrentPage}
+        limit={limit}
       />
     </Container>
   );

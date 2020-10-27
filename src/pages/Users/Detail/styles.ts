@@ -10,7 +10,6 @@ export const Container = styled.div`
     border-radius: ${({ theme }) => theme.radii.default};
   }
   ul {
-    margin-left: 3rem;
     background: #323846;
     padding: 2rem;
     border-radius: ${({ theme }) => theme.radii.default};

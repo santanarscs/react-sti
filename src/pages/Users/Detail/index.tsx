@@ -36,7 +36,7 @@ const Detail: React.FC = () => {
   return (
     <Container>
       <HeaderContent>
-        <h1>{`${user.graduation.name} ${user.name}`}</h1>
+        <h1>{user.name}</h1>
         <div>
           <Link to="/users">Voltar</Link>
           <Link to={`/users/edit/${user.id}`}>Editar</Link>
@@ -46,22 +46,14 @@ const Detail: React.FC = () => {
         </div>
       </HeaderContent>
       <div>
-        <img
-          src={`${process.env.REACT_APP_SERVER_URL}/uploads/${user.avatar}`}
-          alt=""
-        />
         <ul>
           <li>
             <strong>Nome Completo:</strong>
-            <span>{user.full_name}</span>
+            <span>{user.name}</span>
           </li>
           <li>
-            <strong>Posto/Graduação:</strong>
-            <span>{user.graduation.name}</span>
-          </li>
-          <li>
-            <strong>Seção:</strong>
-            <span>{user.section.name}</span>
+            <strong>E-mail:</strong>
+            <span>{user.email}</span>
           </li>
         </ul>
       </div>

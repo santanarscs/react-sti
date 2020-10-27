@@ -26,13 +26,7 @@ const Users: React.FC = (): JSX.Element => {
       const params = { page: currentPage, limit, queryName };
       const response = await api.get<IUser[]>('/users', { params });
 
-      const usersData = response.data.map((user) => ({
-        ...user,
-        avatar: user.avatar
-          ? `${process.env.REACT_APP_SERVER_URL}/uploads/${user.avatar}`
-          : `https://ui-avatars.com/api/?name=${user.full_name}`,
-      }));
-      setUsers(usersData);
+      setUsers(response.data);
       setTotal(Number(response.headers['x-total-count']));
     }
     loadUsers();
@@ -59,9 +53,7 @@ const Users: React.FC = (): JSX.Element => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Nome de guerra</th>
-            <th>Seção</th>
-            <th>Ramal</th>
+            <th>Nome</th>
             <th>E-mail</th>
           </tr>
         </thead>
@@ -71,12 +63,8 @@ const Users: React.FC = (): JSX.Element => {
               key={user.id}
               onClick={() => history.push(`/users/detail/${user.id}`)}
             >
-              <td>
-                <img src={user.avatar} alt={user.name} />
-              </td>
-              <td>{`${user.graduation.name} ${user.name}`}</td>
-              <td>{user.section.name}</td>
-              <td>{user.phone}</td>
+              <td />
+              <td>{user.name}</td>
               <td>{user.email}</td>
             </Row>
           ))}

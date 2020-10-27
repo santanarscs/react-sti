@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { Container, Table, Row } from './styles';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
-import Dropdown from '../../../components/Dropdown';
 import Header from '../../../components/Header';
 
 interface ISearchFormData {

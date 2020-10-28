@@ -1,13 +1,16 @@
 import React, { useRef, useEffect, InputHTMLAttributes } from 'react';
 import { useField } from '@unform/core';
 
+import { Container } from './styles';
+
 interface IProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   name: string;
+  label?: string;
 }
 
-const InputTextArea: React.FC<IProps> = ({ name, ...rest }) => {
+const InputTextArea: React.FC<IProps> = ({ name, label, ...rest }) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const { fieldName, registerField, defaultValue = '' } = useField(name);
+  const { fieldName, registerField, defaultValue = '', error } = useField(name);
 
   useEffect(() => {
     registerField({
@@ -17,7 +20,13 @@ const InputTextArea: React.FC<IProps> = ({ name, ...rest }) => {
     });
   }, [registerField, fieldName]);
 
-  return <textarea ref={inputRef} defaultValue={defaultValue} {...rest} />;
+  return (
+    <Container>
+      {label && <label htmlFor={fieldName}>{label}</label>}
+      <textarea ref={inputRef} defaultValue={defaultValue} {...rest} />
+      {error && <span>{`* ${error}`}</span>}
+    </Container>
+  );
 };
 
 export default InputTextArea;

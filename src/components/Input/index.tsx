@@ -6,10 +6,9 @@ import React, {
   useCallback,
 } from 'react';
 import { IconBaseProps } from 'react-icons';
-import { FiAlertCircle, FiAlertTriangle } from 'react-icons/fi';
 import { useField } from '@unform/core';
 
-import { Container, ContainerInput, Error } from './styles';
+import { Container, ContainerInput } from './styles';
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;

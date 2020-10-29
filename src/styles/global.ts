@@ -31,7 +31,7 @@ export default createGlobalStyle`
   #root {
     height: 100%;
   }
-  body, input, button {
+  body, input, button, textarea {
     font: 1.6rem 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     line-height: 1.48;
   }

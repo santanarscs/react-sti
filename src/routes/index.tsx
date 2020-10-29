@@ -13,6 +13,7 @@ import UserEdit from '../pages/Users/Edit';
 
 import OrdersList from '../pages/Orders/List';
 import OrderDetail from '../pages/Orders/Detail';
+import OrderAdd from '../pages/Orders/Add';
 
 import AppointmentsList from '../pages/Appointments/List';
 
@@ -36,6 +37,7 @@ const Routes: React.FC = () => (
     <Route path="/users" isPrivate component={UsersList} />
 
     <Route path="/orders/detail/:id" isPrivate component={OrderDetail} />
+    <Route path="/orders/new" isPrivate component={OrderAdd} />
     <Route path="/orders" isPrivate component={OrdersList} />
 
     <Route path="/appointments" isPrivate component={AppointmentsList} />

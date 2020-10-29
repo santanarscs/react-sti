@@ -38,6 +38,7 @@
     "@typescript-eslint/camelcase": "off",
     "no-underscore-dangle": ["error", { "allow": ["_id"] }],
     "import/prefer-default-export": "off",
+    "import/no-duplicates": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "react/jsx-filename-extension": [
       1,

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div``;
@@ -22,7 +22,11 @@ export const Table = styled.table`
   }
 `;
 
-export const Row = styled.tr`
+interface IRowProps {
+  status: 'ABERTO' | 'FECHADO';
+}
+
+export const Row = styled.tr<IRowProps>`
   td {
     height: 5.6rem;
   }
@@ -41,4 +45,13 @@ export const Row = styled.tr`
     cursor: pointer;
     background: ${shade(0.4, '#323846')};
   }
+  ${({ status }) =>
+    status === 'FECHADO' &&
+    css`
+      background: #31e184;
+      color: #fff;
+      &:hover {
+        background: ${shade(0.4, '#31e184')};
+      }
+    `}
 `;

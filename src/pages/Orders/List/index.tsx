@@ -22,7 +22,7 @@ interface IOrder {
   created_at: string;
   user: string;
   type: IType;
-  status: string;
+  status: 'ABERTO' | 'FECHADO';
 }
 
 const List: React.FC = () => {
@@ -79,6 +79,7 @@ const List: React.FC = () => {
         <tbody>
           {orders.map((order) => (
             <Row
+              status={order.status}
               key={order.id}
               onClick={() => history.push(`/orders/detail/${order.id}`)}
             >

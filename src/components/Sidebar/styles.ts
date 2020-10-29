@@ -11,7 +11,6 @@ export const Container = styled.aside`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  box-shadow: ${({ theme }) => theme.shadows.default};
   h1 {
     margin-top: 2rem;
     letter-spacing: 0.5rem;

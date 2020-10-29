@@ -7,8 +7,11 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  margin: 0 2rem 0 22rem;
+  margin-left: 20rem;
   flex: 1;
   display: flex;
   flex-direction: column;
+  div + div {
+    margin: 0 2rem 0 2rem;
+  }
 `;

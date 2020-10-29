@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
+import { parseISO, formatDistance } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import { useHistory } from 'react-router-dom';
 import { Container, Table, Row } from './styles';
 import api from '../../../services/api';
@@ -10,12 +11,17 @@ interface ISearchFormData {
   term: string;
 }
 
+interface IType {
+  name: string;
+  color: string;
+}
+
 interface IOrder {
   id: string;
   description: string;
-  created_at: Date;
+  created_at: string;
   user: string;
-  type: string;
+  type: IType;
   status: string;
 }
 
@@ -31,7 +37,14 @@ const List: React.FC = () => {
     async function loadOrders() {
       const params = { page: currentPage, limit, queryName };
       const response = await api.get('/orders', { params });
-      setOrders(response.data);
+      const dataOrders = response.data.map((order: IOrder) => ({
+        ...order,
+        created_at: formatDistance(parseISO(order.created_at), new Date(), {
+          addSuffix: true,
+          locale: pt,
+        }),
+      }));
+      setOrders(dataOrders);
       setTotal(Number(response.headers['x-total-count']));
     }
     loadOrders();
@@ -59,8 +72,8 @@ const List: React.FC = () => {
           <tr>
             <th>Data de criação</th>
             <th>Usuário</th>
-            <th>Descrição</th>
             <th>Tipo</th>
+            <th>Descrição</th>
           </tr>
         </thead>
         <tbody>
@@ -71,8 +84,8 @@ const List: React.FC = () => {
             >
               <td>{order.created_at}</td>
               <td>{order.user}</td>
+              <td>{order.type.name}</td>
               <td>{order.description}</td>
-              <td>{order.type}</td>
             </Row>
           ))}
         </tbody>

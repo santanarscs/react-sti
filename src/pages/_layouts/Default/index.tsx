@@ -2,12 +2,16 @@ import React from 'react';
 
 import { Container, Content } from './styles';
 import Sidebar from '../../../components/Sidebar';
+import TopBar from '../../../components/TopBar';
 
 const Default: React.FC = ({ children }): JSX.Element => {
   return (
     <Container>
       <Sidebar />
-      <Content>{children}</Content>
+      <Content>
+        <TopBar />
+        {children}
+      </Content>
     </Container>
   );
 };

@@ -2,24 +2,26 @@ import React, { createContext, useState, useCallback, useContext } from 'react';
 import api from '../services/api';
 import { useToast } from './toast';
 
+interface IUser {
+  id: string;
+  avatar_url: string;
+  name: string;
+  email: string;
+}
+
 interface IAuthState {
   token: string;
-  user: {
-    name: string;
-    email: string;
-  };
+  user: IUser;
 }
 interface ISignInCredentials {
   email: string;
   password: string;
 }
 interface IAuthContextData {
-  user: {
-    name: string;
-    email: string;
-  };
+  user: IUser;
   signIn(credentials: ISignInCredentials): Promise<void>;
   signOut(): void;
+  updateUser(user: IUser): void;
 }
 
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
@@ -96,10 +98,23 @@ const AuthProvider: React.FC = ({ children }) => {
     },
     [setupInvalidSessionInterceptor, addToast],
   );
+  const updateUser = useCallback(
+    (user: IUser) => {
+      localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+
+      setData({
+        token: data.token,
+        user,
+      });
+    },
+    [setData, data.token],
+  );
 
   return (
     <>
-      <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+      <AuthContext.Provider
+        value={{ user: data.user, signIn, signOut, updateUser }}
+      >
         {children}
       </AuthContext.Provider>
     </>

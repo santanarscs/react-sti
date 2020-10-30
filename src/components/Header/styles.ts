@@ -7,7 +7,6 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 3.2rem;
-  margin-top: 6rem;
   h1 {
     font-weight: normal;
     margin-left: auto;

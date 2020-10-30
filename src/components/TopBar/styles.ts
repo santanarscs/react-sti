@@ -8,6 +8,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   box-shadow: ${({ theme }) => theme.shadows.default};
+  margin-bottom: 4rem;
 `;
 
 export const Content = styled.div`

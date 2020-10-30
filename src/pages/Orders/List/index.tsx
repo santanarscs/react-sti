@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { parseISO, formatDistance } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { useHistory } from 'react-router-dom';
-import { Container, Table, Row } from './styles';
+import Switch from 'react-switch';
+import { Container, Table, Row, SwitchContainer } from './styles';
 import api from '../../../services/api';
 import Pagination from '../../../components/Pagination';
 import Header from '../../../components/Header';
@@ -26,6 +27,7 @@ interface IOrder {
 }
 
 const List: React.FC = () => {
+  const [isOld, setIsOld] = useState<boolean>(false);
   const [orders, setOrders] = useState<IOrder[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [limit] = useState(10);
@@ -36,7 +38,9 @@ const List: React.FC = () => {
   useEffect(() => {
     async function loadOrders() {
       const params = { page: currentPage, limit, queryName };
-      const response = await api.get('/orders', { params });
+      const response = await api.get('/orders', {
+        params: { ...params, isOld },
+      });
       const dataOrders = response.data.map((order: IOrder) => ({
         ...order,
         created_at: formatDistance(parseISO(order.created_at), new Date(), {
@@ -48,7 +52,7 @@ const List: React.FC = () => {
       setTotal(Number(response.headers['x-total-count']));
     }
     loadOrders();
-  }, [currentPage, limit, queryName]);
+  }, [currentPage, limit, queryName, isOld]);
 
   const handleSearchSubmit = useCallback(
     ({ term }: ISearchFormData) => {
@@ -57,6 +61,9 @@ const List: React.FC = () => {
     },
     [setQueryName, setCurrentPage],
   );
+  const handleChangeIsOld = useCallback((status: boolean) => {
+    setIsOld(status);
+  }, []);
 
   return (
     <Container>
@@ -67,6 +74,10 @@ const List: React.FC = () => {
         title="Serviços"
         placeholder="Digite um termo de pesquisa"
       />
+      <SwitchContainer>
+        <Switch onChange={handleChangeIsOld} checked={isOld} />
+        <span>Fecahdos?</span>
+      </SwitchContainer>
       <Table>
         <thead>
           <tr>

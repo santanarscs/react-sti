@@ -55,3 +55,12 @@ export const Row = styled.tr<IRowProps>`
       }
     `}
 `;
+
+export const SwitchContainer = styled.div`
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  span {
+    margin-left: 1rem;
+  }
+`;

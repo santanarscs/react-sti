@@ -28,10 +28,13 @@ export const Profile = styled.div`
     height: 4rem;
     border-radius: 50%;
   }
-  svg {
+  > svg {
     margin-left: 1rem;
   }
   li {
+    svg {
+      margin-right: 1rem;
+    }
     padding: 2rem;
   }
   button {

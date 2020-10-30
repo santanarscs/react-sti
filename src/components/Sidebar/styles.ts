@@ -22,6 +22,9 @@ export const Container = styled.aside`
       color: #ccd1dd;
     }
   }
+  @media (max-width: 1109px) {
+    width: 8rem;
+  }
 `;
 
 export const Nav = styled.ul`
@@ -56,6 +59,20 @@ export const Nav = styled.ul`
       }
       span {
         font-weight: normal;
+      }
+    }
+  }
+
+  @media (max-width: 1109px) {
+    li {
+      a {
+        justify-content: center;
+        svg {
+          margin: 0;
+        }
+        span {
+          display: none;
+        }
       }
     }
   }

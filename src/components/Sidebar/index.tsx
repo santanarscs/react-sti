@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import {
   FiHome,
   FiSettings,
-  FiPower,
   FiUsers,
   FiCalendar,
   FiMonitor,

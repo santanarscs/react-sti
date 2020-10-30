@@ -14,4 +14,7 @@ export const Content = styled.div`
   > div + div {
     margin: 0 2rem 0 2rem;
   }
+  @media (max-width: 1109px) {
+    margin-left: 8rem;
+  }
 `;

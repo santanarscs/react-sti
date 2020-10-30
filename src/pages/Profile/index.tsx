@@ -1,9 +1,9 @@
 import React, { useCallback, useRef, ChangeEvent } from 'react';
-import { FiMail, FiUser, FiLock, FiCamera, FiArrowLeft } from 'react-icons/fi';
+import { FiMail, FiUser, FiLock, FiCamera } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -15,7 +15,6 @@ import { useToast } from '../../hooks/toast';
 
 import { Container, Content, AvatarInput } from './styles';
 import { useAuth } from '../../hooks/auth';
-import IUser from '../../interfaces/IUser';
 
 interface IProfileFormData {
   name: string;

@@ -11,7 +11,7 @@ export const Content = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  div + div {
+  > div + div {
     margin: 0 2rem 0 2rem;
   }
 `;

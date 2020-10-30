@@ -26,6 +26,8 @@ import SectionsList from '../pages/Sections/List';
 import SectionAdd from '../pages/Sections/Add';
 import SectionDetail from '../pages/Sections/Detail';
 
+import Profile from '../pages/Profile';
+
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={SignIn} />
@@ -35,6 +37,7 @@ const Routes: React.FC = () => (
     <Route path="/users/edit/:id" isPrivate component={UserEdit} />
     <Route path="/users/new" isPrivate component={UserAdd} />
     <Route path="/users" isPrivate component={UsersList} />
+    <Route path="/me" isPrivate component={Profile} />
 
     <Route path="/orders/detail/:id" isPrivate component={OrderDetail} />
     <Route path="/orders/new" isPrivate component={OrderAdd} />

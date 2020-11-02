@@ -7,6 +7,8 @@ import IUser from '../../../interfaces/IUser';
 import { Container, Table, Row } from './styles';
 import Header from '../../../components/Header';
 
+import { CONTAINER_ANIMATION } from '../../../animations';
+
 interface ISearchFormData {
   term: string;
 }
@@ -41,7 +43,13 @@ const Users: React.FC = (): JSX.Element => {
   );
 
   return (
-    <Container>
+    <Container
+      variants={CONTAINER_ANIMATION}
+      initial="unMounted"
+      animate="mounted"
+      exit="unMounted"
+      transition={{ duration: 0.5 }}
+    >
       <Header
         initialName={queryName}
         onSubmit={handleSearchSubmit}

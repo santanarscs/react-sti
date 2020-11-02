@@ -6,6 +6,7 @@ import Delete from './Delete';
 import { useModal } from '../../../hooks/modal';
 import { Container, HeaderContent } from './styles';
 import IUser from '../../../interfaces/IUser';
+import { CONTAINER_ANIMATION } from '../../../animations';
 
 const Detail: React.FC = () => {
   const { id } = useParams();
@@ -28,13 +29,25 @@ const Detail: React.FC = () => {
 
   if (!user) {
     return (
-      <Container>
+      <Container
+        variants={CONTAINER_ANIMATION}
+        initial="unMounted"
+        animate="mounted"
+        exit="unMounted"
+        transition={{ duration: 0.5 }}
+      >
         <h1>Carregando</h1>
       </Container>
     );
   }
   return (
-    <Container>
+    <Container
+      variants={CONTAINER_ANIMATION}
+      initial="unMounted"
+      animate="mounted"
+      exit="unMounted"
+      transition={{ duration: 0.5 }}
+    >
       <HeaderContent>
         <h1>{user.name}</h1>
         <div>

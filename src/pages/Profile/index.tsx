@@ -15,6 +15,7 @@ import { useToast } from '../../hooks/toast';
 
 import { Container, Content, AvatarInput } from './styles';
 import { useAuth } from '../../hooks/auth';
+import { CONTAINER_ANIMATION } from '../../animations';
 
 interface IProfileFormData {
   name: string;
@@ -132,7 +133,13 @@ const Profile: React.FC = () => {
   );
 
   return (
-    <Container>
+    <Container
+      variants={CONTAINER_ANIMATION}
+      initial="unMounted"
+      animate="mounted"
+      exit="unMounted"
+      transition={{ duration: 0.5 }}
+    >
       <Content>
         <Form
           ref={formRef}

@@ -1,0 +1,25 @@
+export const DASHBOARD_ANIMATION = {
+  unMounted: { opacity: 0 },
+  mounted: {
+    opacity: 1,
+  },
+};
+
+export const CONTAINER_ANIMATION = {
+  unMounted: { y: -20, opacity: 0 },
+  mounted: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      when: 'beforeChildren',
+      staggerChildren: 0.2,
+      type: 'spring',
+      mass: 1.3,
+    },
+  },
+};
+
+export const CARDS_ANIMATION = {
+  unMounted: { y: -50, opacity: 0 },
+  mounted: { y: 0, opacity: 1 },
+};

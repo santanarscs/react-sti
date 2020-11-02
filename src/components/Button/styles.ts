@@ -1,5 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { darken } from 'polished';
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 interface IContainerProps {
   isLoading: number;
@@ -28,4 +37,10 @@ export const Container = styled.button<IContainerProps>`
     margin-right: 0.3rem;
   }
   cursor: ${({ isLoading }) => (isLoading ? 'not-allowed' : 'pointer')};
+`;
+
+export const Loading = styled.div`
+  svg {
+    animation: ${rotate} 1s linear infinite;
+  }
 `;

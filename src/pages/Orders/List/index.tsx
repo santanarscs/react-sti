@@ -83,7 +83,7 @@ const List: React.FC = () => {
       />
       <SwitchContainer>
         <Switch onChange={handleChangeIsOld} checked={isOld} />
-        <span>Fecahdos?</span>
+        <span>Serviços finalizados?</span>
       </SwitchContainer>
       <Table>
         <thead>

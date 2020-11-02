@@ -62,6 +62,7 @@ export const SwitchContainer = styled.div`
   display: flex;
   margin: 0 auto;
   align-items: center;
+  justify-content: flex-end;
   span {
     margin-left: 1rem;
   }

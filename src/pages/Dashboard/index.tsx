@@ -3,7 +3,6 @@ import React from 'react';
 import { FiSettings, FiUsers, FiMonitor } from 'react-icons/fi';
 
 import {
-  Container,
   AnimatedWrapper,
   AnimatedContainer,
   AnimatedCard,

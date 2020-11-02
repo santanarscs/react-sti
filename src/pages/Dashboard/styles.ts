@@ -1,12 +1,6 @@
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
-export const Container = styled.div`
-  h1 {
-    margin-bottom: 2rem;
-  }
-`;
-
 export const AnimatedWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;

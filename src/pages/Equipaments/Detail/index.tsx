@@ -7,6 +7,7 @@ import { Container, HeaderContent, HistoryContainer } from './styles';
 import IEquipament from '../../../interfaces/IEquipament';
 import { useModal } from '../../../hooks/modal';
 import IMovimentation from '../../../interfaces/IMovimentation';
+import { CONTAINER_ANIMATION } from '../../../animations';
 
 const Detail: React.FC = () => {
   const { id } = useParams();
@@ -56,14 +57,26 @@ const Detail: React.FC = () => {
 
   if (!equipament) {
     return (
-      <Container>
+      <Container
+        variants={CONTAINER_ANIMATION}
+        initial="unMounted"
+        animate="mounted"
+        exit="unMounted"
+        transition={{ duration: 0.5 }}
+      >
         <h1>Carregando</h1>
       </Container>
     );
   }
 
   return (
-    <Container>
+    <Container
+      variants={CONTAINER_ANIMATION}
+      initial="unMounted"
+      animate="mounted"
+      exit="unMounted"
+      transition={{ duration: 0.5 }}
+    >
       <HeaderContent>
         <h1>Detalhes</h1>
         <div>

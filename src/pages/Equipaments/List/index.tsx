@@ -6,6 +6,7 @@ import Pagination from '../../../components/Pagination';
 import IEquipament from '../../../interfaces/IEquipament';
 import { Container, Table, Row } from './styles';
 import Header from '../../../components/Header';
+import { CONTAINER_ANIMATION } from '../../../animations';
 
 interface ISearchFormData {
   term: string;
@@ -31,7 +32,6 @@ const List: React.FC = () => {
 
   const handleSearchSubmit = useCallback(
     ({ term }: ISearchFormData) => {
-      console.log(term);
       setCurrentPage(1);
       setQueryName(term || undefined);
     },
@@ -39,7 +39,13 @@ const List: React.FC = () => {
   );
 
   return (
-    <Container>
+    <Container
+      variants={CONTAINER_ANIMATION}
+      initial="unMounted"
+      animate="mounted"
+      exit="unMounted"
+      transition={{ duration: 0.5 }}
+    >
       <Header
         initialName={queryName}
         onSubmit={handleSearchSubmit}

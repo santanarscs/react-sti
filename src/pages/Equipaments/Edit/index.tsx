@@ -8,6 +8,7 @@ import { Container } from './styles';
 import api from '../../../services/api';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import { useToast } from '../../../hooks/toast';
+import { CONTAINER_ANIMATION } from '../../../animations';
 
 interface IFormData {
   description: string;
@@ -66,7 +67,13 @@ const Add: React.FC = () => {
   );
 
   return (
-    <Container>
+    <Container
+      variants={CONTAINER_ANIMATION}
+      initial="unMounted"
+      animate="mounted"
+      exit="unMounted"
+      transition={{ duration: 0.5 }}
+    >
       <h1>Editar equipamento</h1>
       <Form ref={formRef} onSubmit={handleSubmit} initialData={initialData}>
         <Input label="Descrição" placeholder="Descrição" name="description" />

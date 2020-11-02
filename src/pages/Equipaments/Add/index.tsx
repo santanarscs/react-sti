@@ -10,6 +10,7 @@ import getValidationErrors from '../../../utils/getValidationErrors';
 import DatePicker from '../../../components/Datepicker';
 import { useToast } from '../../../hooks/toast';
 import { Container } from './styles';
+import { CONTAINER_ANIMATION } from '../../../animations';
 
 interface IFormData {
   description: string;
@@ -106,7 +107,13 @@ const Add: React.FC = () => {
   );
 
   return (
-    <Container>
+    <Container
+      variants={CONTAINER_ANIMATION}
+      initial="unMounted"
+      animate="mounted"
+      exit="unMounted"
+      transition={{ duration: 0.5 }}
+    >
       <h1>Novo equipamento</h1>
       <Form ref={formRef} onSubmit={handleSubmit}>
         <Input label="Descrição" placeholder="Descrição" name="description" />
@@ -116,7 +123,6 @@ const Add: React.FC = () => {
           placeholder="Service Tag"
           name="service_tag"
         />
-        {/* <div style={{ paddingTop: '4rem' }}> */}
         <DatePicker
           label="Data da movimentação"
           placeholder="Data da movimentação"
@@ -134,7 +140,6 @@ const Add: React.FC = () => {
           name="user"
           options={users}
         />
-        {/* </div> */}
 
         <button type="submit">Cadastrar</button>
       </Form>

@@ -1,5 +1,35 @@
-import styled from 'styled-components';
-import { darken } from 'polished';
+import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
+
+export const AnimatedContainer = styled(motion.main)`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 36rem;
+    padding: 3.2rem;
+    background: ${theme.colors.background};
+    border-radius: ${theme.radii.default};
+    box-shadow: ${theme.shadows.default};
+    form {
+      min-width: 40rem;
+      img {
+        align-self: center;
+        margin-bottom: 2rem;
+        width: 10rem;
+      }
+      h1 {
+        font-size: 3rem;
+      }
+      padding: 3rem;
+      background: #323846;
+      border-radius: ${theme.radii.default};
+      display: flex;
+      flex-direction: column;
+    }
+  `}
+`;
 
 export const Container = styled.div`
   height: 100vh;
@@ -7,42 +37,4 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  form {
-    min-width: 40rem;
-    img {
-      align-self: center;
-      margin-bottom: 2rem;
-      width: 10rem;
-    }
-    h1 {
-      font-size: 3rem;
-    }
-    padding: 3rem;
-    background: #323846;
-    border-radius: ${({ theme }) => theme.radii.default};
-    display: flex;
-    flex-direction: column;
-    button {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.6rem;
-      border: none;
-      background: ${({ theme }) => theme.colors.primary};
-      color: ${({ theme }) => theme.colors.white};
-      height: 5rem;
-      border-radius: ${({ theme }) => theme.radii.default};
-      text-transform: uppercase;
-      transition: background 0.2s;
-      letter-spacing: 0.2rem;
-      font-weight: bold;
-      &:hover {
-        background: ${({ theme }) => darken(0.1, theme.colors.primary)};
-      }
-      svg {
-        margin-right: 0.3rem;
-      }
-    }
-  }
 `;

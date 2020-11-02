@@ -8,11 +8,14 @@ import { FiLock, FiMail } from 'react-icons/fi';
 import { useAuth } from '../../../hooks/auth';
 
 import Input from '../../../components/Input';
-import { Container } from './styles';
+import { Container, AnimatedContainer } from './styles';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import { useToast } from '../../../hooks/toast';
 
 import LogoDirens from '../../../assets/images/DIRENS_COLORIDO.png';
+
+import { ANIMATION } from './animations';
+import Button from '../../../components/Button';
 
 interface ISignInFormData {
   email: string;
@@ -62,22 +65,31 @@ const Auth: React.FC = (): JSX.Element => {
   );
   return (
     <Container>
-      <Form ref={formRef} onSubmit={handleSubmit}>
-        <img src={LogoDirens} alt="Direns" />
-        <Input
-          icon={FiMail}
-          type="email"
-          name="email"
-          placeholder="Digite seu e-mail"
-        />
-        <Input
-          icon={FiLock}
-          type="password"
-          name="password"
-          placeholder="Digite sua senha"
-        />
-        <button type="submit">{loading ? 'Aguarde' : 'Entrar'}</button>
-      </Form>
+      <AnimatedContainer
+        variants={ANIMATION}
+        initial="unMounted"
+        animate="mounted"
+        exit="unMounted"
+      >
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <img src={LogoDirens} alt="Direns" />
+          <Input
+            icon={FiMail}
+            type="email"
+            name="email"
+            placeholder="Digite seu e-mail"
+          />
+          <Input
+            icon={FiLock}
+            type="password"
+            name="password"
+            placeholder="Digite sua senha"
+          />
+          <Button type="submit" loading={loading}>
+            Entrar
+          </Button>
+        </Form>
+      </AnimatedContainer>
     </Container>
   );
 };

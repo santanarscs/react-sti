@@ -36,7 +36,8 @@ export const Row = styled.tr<IRowProps>`
   }
   td:last-child {
     border-radius: 0 1rem 1rem 0;
-    padding-right: 16px;
+    padding-right: 1.6rem;
+    max-width: 50rem;
   }
   background: #323846;
   font-size: 16px;

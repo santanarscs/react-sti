@@ -26,6 +26,11 @@ import SectionsList from '../pages/Sections/List';
 import SectionAdd from '../pages/Sections/Add';
 import SectionDetail from '../pages/Sections/Detail';
 
+import SpotsList from '../pages/Spots/List';
+import SpotDetail from '../pages/Spots/Detail';
+import SpotAdd from '../pages/Spots/Add';
+import SpotEdit from '../pages/Spots/Edit';
+
 import Profile from '../pages/Profile';
 
 const Routes: React.FC = () => (
@@ -57,6 +62,11 @@ const Routes: React.FC = () => (
     <Route path="/sections/detail/:id" isPrivate component={SectionDetail} />
     <Route path="/sections/new" isPrivate component={SectionAdd} />
     <Route path="/sections" isPrivate component={SectionsList} />
+
+    <Route path="/spots/detail/:id" isPrivate component={SpotDetail} />
+    <Route path="/spots/edit/:id" isPrivate component={SpotEdit} />
+    <Route path="/spots/new" isPrivate component={SpotAdd} />
+    <Route path="/spots" isPrivate component={SpotsList} />
   </Switch>
 );
 

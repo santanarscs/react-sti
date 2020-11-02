@@ -9,6 +9,7 @@ import getValidationErrors from '../../../utils/getValidationErrors';
 import { useToast } from '../../../hooks/toast';
 import Select, { IOptionValue } from '../../../components/Select';
 import { Container } from './styles';
+import { CONTAINER_ANIMATION } from '../../../animations';
 
 interface IFormData {
   description: string;
@@ -88,7 +89,13 @@ const Add: React.FC = () => {
   );
 
   return (
-    <Container>
+    <Container
+      variants={CONTAINER_ANIMATION}
+      initial="unMounted"
+      animate="mounted"
+      exit="unMounted"
+      transition={{ duration: 0.5 }}
+    >
       <h1>Novo Pedido de serviço</h1>
       <Form ref={formRef} onSubmit={handleSubmit}>
         <Select

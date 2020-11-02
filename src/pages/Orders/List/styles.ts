@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 import { shade } from 'polished';
+import { motion } from 'framer-motion';
 
-export const Container = styled.div``;
+export const Container = styled(motion.div)``;
 
 export const Table = styled.table`
   width: 100%;

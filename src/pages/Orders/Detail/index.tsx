@@ -9,6 +9,7 @@ import { useModal } from '../../../hooks/modal';
 import Solve from './Solve';
 import parseDate from '../../../utils/parseDate';
 import { Container, HeaderContent, SolvedButton, DeleteButton } from './styles';
+import { CONTAINER_ANIMATION } from '../../../animations';
 
 interface IType {
   name: string;
@@ -73,13 +74,25 @@ const Detail: React.FC = () => {
 
   if (!order) {
     return (
-      <Container>
+      <Container
+        variants={CONTAINER_ANIMATION}
+        initial="unMounted"
+        animate="mounted"
+        exit="unMounted"
+        transition={{ duration: 0.5 }}
+      >
         <h1>Carregando</h1>
       </Container>
     );
   }
   return (
-    <Container>
+    <Container
+      variants={CONTAINER_ANIMATION}
+      initial="unMounted"
+      animate="mounted"
+      exit="unMounted"
+      transition={{ duration: 0.5 }}
+    >
       <HeaderContent>
         <h1>Detalhes</h1>
         <div>

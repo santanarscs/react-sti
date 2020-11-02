@@ -6,6 +6,7 @@ import Pagination from '../../../components/Pagination';
 import Header from '../../../components/Header';
 import ISection from '../../../interfaces/ISection';
 import api from '../../../services/api';
+import { CONTAINER_ANIMATION } from '../../../animations';
 
 interface ISearchFormData {
   term: string;
@@ -14,7 +15,7 @@ interface ISearchFormData {
 const List: React.FC = () => {
   const [sections, setSections] = useState<ISection[]>([]);
 
-  const [total, setTotal] = useState<number>(0);
+  const [total] = useState<number>(0);
   const [limit] = useState(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [queryName, setQueryName] = useState<string | undefined>();
@@ -40,7 +41,13 @@ const List: React.FC = () => {
   );
 
   return (
-    <Container>
+    <Container
+      variants={CONTAINER_ANIMATION}
+      initial="unMounted"
+      animate="mounted"
+      exit="unMounted"
+      transition={{ duration: 0.5 }}
+    >
       <Header
         initialName={queryName}
         onSubmit={handleSearchSubmit}

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
+import { motion } from 'framer-motion';
 
-export const Container = styled.div`
+export const Container = styled(motion.div)`
   h1 {
     margin-bottom: 2rem;
   }

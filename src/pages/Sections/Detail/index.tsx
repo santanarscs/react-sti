@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import api from '../../../services/api';
 import { Container, HeaderContent } from './styles';
 import ISection from '../../../interfaces/ISection';
+import { CONTAINER_ANIMATION } from '../../../animations';
 
 const Detail: React.FC = () => {
   const { id } = useParams();
@@ -21,7 +22,13 @@ const Detail: React.FC = () => {
   }
 
   return (
-    <Container>
+    <Container
+      variants={CONTAINER_ANIMATION}
+      initial="unMounted"
+      animate="mounted"
+      exit="unMounted"
+      transition={{ duration: 0.5 }}
+    >
       <HeaderContent>
         <h1>Detalhes</h1>
         <div>

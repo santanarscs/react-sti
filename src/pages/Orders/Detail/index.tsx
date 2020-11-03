@@ -24,7 +24,7 @@ interface IOrder {
   id: string;
   description: string;
   created_at: string;
-  user: string;
+  owner: string;
   type: IType;
   solver: IUser;
   status: string;
@@ -121,7 +121,7 @@ const Detail: React.FC = () => {
         </li>
         <li>
           <strong>Usuário: </strong>
-          <span>{order.user}</span>
+          <span>{order.owner}</span>
         </li>
         <li>
           <strong>Status: </strong>

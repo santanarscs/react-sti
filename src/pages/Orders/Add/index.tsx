@@ -13,7 +13,7 @@ import { CONTAINER_ANIMATION } from '../../../animations';
 
 interface IFormData {
   description: string;
-  user: string;
+  owner: string;
   type_id: string;
 }
 interface IUser {
@@ -57,7 +57,7 @@ const Add: React.FC = () => {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
           description: Yup.string().required('Descrição é obrigatório'),
-          user: Yup.string().required('Usuário é obrigatório'),
+          owner: Yup.string().required('Usuário é obrigatório'),
           type_id: Yup.string().required('Tipo é obrigatório'),
         });
         await schema.validate(data, {
@@ -101,7 +101,7 @@ const Add: React.FC = () => {
         <Select
           label="Usuário"
           placeholder="Usuário"
-          name="user"
+          name="owner"
           options={users}
         />
         <Select

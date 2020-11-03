@@ -22,7 +22,7 @@ interface IOrder {
   id: string;
   description: string;
   created_at: string;
-  user: string;
+  owner: string;
   type: IType;
   status: 'ABERTO' | 'FECHADO';
 }
@@ -102,7 +102,7 @@ const List: React.FC = () => {
               onClick={() => history.push(`/orders/detail/${order.id}`)}
             >
               <td>{order.created_at}</td>
-              <td>{order.user}</td>
+              <td>{order.owner}</td>
               <td>{order.type.name}</td>
               <td>{order.description}</td>
             </Row>

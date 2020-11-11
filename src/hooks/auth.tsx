@@ -39,12 +39,12 @@ const AuthProvider: React.FC = ({ children }) => {
           return response;
         },
         (error) => {
-          // const { response } = error;
-          // if (response.data?.error === 'Token invalid') {
+          const { response } = error;
+          if (response.data?.message === 'Invalid JWT token') {
           // eslint-disable-next-line @typescript-eslint/no-use-before-define
-          signOut();
-          // }
-          return Promise.reject(error);
+            signOut();
+            return Promise.reject(error);
+          }
         },
       );
       return { token, user: JSON.parse(user) };
